@@ -1,0 +1,292 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "collection",
+  "id": "zfim-default-sources",
+  "name": "Kho Nguồn Gốc zFim",
+  "description": "Kho nguồn phim & hoạt hình chính thức được kiểm thử và xác minh cho ứng dụng zFim",
+  "version": "1.0.0",
+  "addons": [
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "yanhh3d",
+      "name": "YanHH3D 4K",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh chất lượng cao",
+      "logo": "https://yanhh3d.nl/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
+      "base": "https://yanhh3d.plus",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://yanhh3d.plus/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/moi-cap-nhat?page={page}"
+        },
+        {
+          "id": "hoat-hinh-3d",
+          "type": "series",
+          "name": "Hoạt Hình 3D",
+          "endpoint": "/hoat-hinh-3d?page={page}"
+        },
+        {
+          "id": "dang-chieu",
+          "type": "series",
+          "name": "Đang Chiếu",
+          "endpoint": "/dang-chieu?page={page}"
+        },
+        {
+          "id": "hoan-thanh",
+          "type": "series",
+          "name": "Hoàn Thành",
+          "endpoint": "/hoan-thanh?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/phim-le?page={page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/moi-cap-nhat?page={page}",
+          "item": ".flw-item",
+          "map": {
+            "id": "a.film-poster-ahref @href",
+            "name": "h3.film-name a @text",
+            "poster": "img.film-poster-img @data-src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.film-name @text",
+            "poster": "img.film-poster-img @data-src",
+            "description": ".film-description .text @text",
+            "videos": {
+              "item": ".ep-item",
+              "map": {
+                "title": "@title",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.btn3dsv, a.btn-play, iframe, video, source",
+            "attr": "data-src",
+            "label": "@name"
+          }
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [
+          "https://bit.ly/yanhh3d",
+          "https://raw.githubusercontent.com/Datj0000/domain/refs/heads/main/yanhh3d.txt",
+          "https://cdn.jsdelivr.net/gh/Datj0000/domain@main/yanhh3d.txt",
+          "https://fastly.jsdelivr.net/gh/Datj0000/domain@main/yanhh3d.txt"
+        ],
+        "bannedTerms": [
+          "quangcao",
+          "promo",
+          "intro"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt",
+          ".svg"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4"
+        ]
+      },
+      "streamUnwrapping": [
+        "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "kkphim",
+      "name": "KKPhim (Xem Mọi Thiết Bị)",
+      "version": "1.0.0",
+      "description": "Kho phim lẻ, phim bộ, hoạt hình cập nhật liên tục từ PhimAPI / KKPhim",
+      "logo": "https://phimimg.com/uploads/movies/logo.png",
+      "base": "https://phimapi.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://phimapi.com/"
+      },
+      "types": [
+        "movie",
+        "series"
+      ],
+      "catalogs": [
+        {
+          "id": "phim-moi-cap-nhat",
+          "type": "movie",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/danh-sach/phim-moi-cap-nhat?page={page}"
+        }
+      ],
+      "json": {
+        "list": {
+          "path": "/danh-sach/phim-moi-cap-nhat?page={page}",
+          "items": "items",
+          "map": {
+            "id": "slug",
+            "name": "name",
+            "poster": "poster_url"
+          }
+        },
+        "meta": {
+          "path": "/phim/{slug}",
+          "map": {
+            "name": "movie.name",
+            "poster": "movie.poster_url",
+            "description": "movie.content",
+            "episodes": "episodes"
+          }
+        },
+        "streams": {
+          "path": "/phim/{slug}",
+          "regexes": [
+            "https?://[^\"'\\s]+\\.m3u8"
+          ]
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [],
+        "bannedTerms": [
+          "quangcao",
+          "promo"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4"
+        ]
+      },
+      "streamUnwrapping": [
+        "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hh3d",
+      "name": "HH3D.com",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh tổng hợp từ HH3D.com",
+      "logo": "https://www.hh3d.com/storage/files/hh3d_favicon.png",
+      "base": "https://www.hh3d.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.hh3d.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "tien-hiep",
+          "type": "series",
+          "name": "Tiên Hiệp",
+          "endpoint": "/the-loai/tien-hiep?page={page}"
+        },
+        {
+          "id": "huyen-huyen",
+          "type": "series",
+          "name": "Huyền Huyễn",
+          "endpoint": "/the-loai/huyen-huyen?page={page}"
+        },
+        {
+          "id": "phieu-luu",
+          "type": "series",
+          "name": "Phiêu Lưu",
+          "endpoint": "/the-loai/phieu-luu?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/danh-sach/phim-le?page={page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/the-loai/tien-hiep?page={page}",
+          "item": ".halim-item",
+          "map": {
+            "id": "a.halim-thumb @href",
+            "name": "a.halim-thumb @title",
+            "poster": "img @data-src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.entry-title @text",
+            "poster": "img.movie-thumb @data-src",
+            "description": ".entry-content @text",
+            "videos": {
+              "item": ".halim-episode a",
+              "map": {
+                "title": "@title",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "{episodeId}",
+          "candidates": {
+            "selector": "span.streaming-server, .streaming-server",
+            "attr": "data-link",
+            "label": "@text"
+          }
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [],
+        "bannedTerms": [
+          "quangcao",
+          "promo"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4"
+        ]
+      },
+      "streamUnwrapping": [
+        "data-obf",
+        "direct-m3u8"
+      ]
+    }
+  ]
+}

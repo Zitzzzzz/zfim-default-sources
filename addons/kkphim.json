@@ -1,0 +1,72 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "kkphim",
+  "name": "KKPhim (Xem Mọi Thiết Bị)",
+  "version": "1.0.0",
+  "description": "Kho phim lẻ, phim bộ, hoạt hình cập nhật liên tục từ PhimAPI / KKPhim",
+  "logo": "https://phimimg.com/uploads/movies/logo.png",
+  "base": "https://phimapi.com",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Referer": "https://phimapi.com/"
+  },
+  "types": [
+    "movie",
+    "series"
+  ],
+  "catalogs": [
+    {
+      "id": "phim-moi-cap-nhat",
+      "type": "movie",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/danh-sach/phim-moi-cap-nhat?page={page}"
+    }
+  ],
+  "json": {
+    "list": {
+      "path": "/danh-sach/phim-moi-cap-nhat?page={page}",
+      "items": "items",
+      "map": {
+        "id": "slug",
+        "name": "name",
+        "poster": "poster_url"
+      }
+    },
+    "meta": {
+      "path": "/phim/{slug}",
+      "map": {
+        "name": "movie.name",
+        "poster": "movie.poster_url",
+        "description": "movie.content",
+        "episodes": "episodes"
+      }
+    },
+    "streams": {
+      "path": "/phim/{slug}",
+      "regexes": [
+        "https?://[^\"'\\s]+\\.m3u8"
+      ]
+    }
+  },
+  "streamFilters": {
+    "blocklistHosts": [],
+    "bannedTerms": [
+      "quangcao",
+      "promo"
+    ],
+    "falseStreamExts": [
+      ".jpg",
+      ".png",
+      ".webp",
+      ".vtt"
+    ],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4"
+    ]
+  },
+  "streamUnwrapping": [
+    "direct-m3u8"
+  ]
+}

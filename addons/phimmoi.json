@@ -1,0 +1,9 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "id": "phimmoi",
+  "name": "PHIMMOI",
+  "version": "1.0.0",
+  "base": "https://phimmoic.bz",
+  "unsupported": "needs-js",
+  "reason": "Built with Next.js SPA with BAILOUT_TO_CLIENT_SIDE_RENDERING for the video player container ('Đang tải nội dung phim...'). The actual video player and stream URLs are injected only via client-side React hydration."
+}

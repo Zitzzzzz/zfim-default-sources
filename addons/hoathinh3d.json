@@ -1,0 +1,9 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "id": "hoathinh3d",
+  "name": "HoatHinh3D",
+  "version": "1.0.0",
+  "base": "https://hoathinh3d.pw",
+  "unsupported": "needs-js",
+  "reason": "Halim WordPress theme encrypts stream endpoints with dynamic AES-GCM tokens negotiated per-session via /wp-json/halim/v1/player-key. Requires dynamic browser JavaScript / Web Crypto API to decrypt stream URLs."
+}

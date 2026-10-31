@@ -1,0 +1,9 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "id": "vsmov",
+  "name": "VSMOV",
+  "version": "1.0.0",
+  "base": "https://vsmov.com",
+  "unsupported": "needs-js",
+  "reason": "Stream playback relies on client-side JavaScript URL assembly (baseUrl + '/stream/' + videoHash + '/master.m3u8') from dynamic embed iframe (v13.streamvsmov.com). Declarative JSON v1 cannot execute dynamic JS logic."
+}

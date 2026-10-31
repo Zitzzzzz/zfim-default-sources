@@ -1,0 +1,9 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "id": "hhhtq",
+  "name": "HHHTQ.Team",
+  "version": "1.0.0",
+  "base": "https://hhhtq.team",
+  "unsupported": "needs-js",
+  "reason": "Episodes are embedded through proprietary third-party players (Dailymotion geo.dailymotion.com, AbyssPlayer player.abyssplayer.com, Rumble rumble.com) requiring full browser JavaScript runtime, bot-verification tokens, or OAuth sessions not accessible via declarative HTTP scraping."
+}

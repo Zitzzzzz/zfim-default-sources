@@ -1,0 +1,111 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "yanhh3d",
+  "name": "YanHH3D 4K",
+  "version": "1.0.0",
+  "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh chất lượng cao",
+  "logo": "https://yanhh3d.nl/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
+  "base": "https://yanhh3d.plus",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Referer": "https://yanhh3d.plus/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/moi-cap-nhat?page={page}"
+    },
+    {
+      "id": "hoat-hinh-3d",
+      "type": "series",
+      "name": "Hoạt Hình 3D",
+      "endpoint": "/hoat-hinh-3d?page={page}"
+    },
+    {
+      "id": "dang-chieu",
+      "type": "series",
+      "name": "Đang Chiếu",
+      "endpoint": "/dang-chieu?page={page}"
+    },
+    {
+      "id": "hoan-thanh",
+      "type": "series",
+      "name": "Hoàn Thành",
+      "endpoint": "/hoan-thanh?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ",
+      "endpoint": "/phim-le?page={page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/moi-cap-nhat?page={page}",
+      "item": ".flw-item",
+      "map": {
+        "id": "a.film-poster-ahref @href",
+        "name": "h3.film-name a @text",
+        "poster": "img.film-poster-img @data-src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1.film-name @text",
+        "poster": "img.film-poster-img @data-src",
+        "description": ".film-description .text @text",
+        "videos": {
+          "item": ".ep-item",
+          "map": {
+            "title": "@title",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "a.btn3dsv, a.btn-play, iframe, video, source",
+        "attr": "data-src",
+        "label": "@name"
+      }
+    }
+  },
+  "streamFilters": {
+    "blocklistHosts": [
+      "https://bit.ly/yanhh3d",
+      "https://raw.githubusercontent.com/Datj0000/domain/refs/heads/main/yanhh3d.txt",
+      "https://cdn.jsdelivr.net/gh/Datj0000/domain@main/yanhh3d.txt",
+      "https://fastly.jsdelivr.net/gh/Datj0000/domain@main/yanhh3d.txt"
+    ],
+    "bannedTerms": [
+      "quangcao",
+      "promo",
+      "intro"
+    ],
+    "falseStreamExts": [
+      ".jpg",
+      ".png",
+      ".webp",
+      ".vtt",
+      ".svg"
+    ],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4"
+    ]
+  },
+  "streamUnwrapping": [
+    "direct-m3u8"
+  ]
+}

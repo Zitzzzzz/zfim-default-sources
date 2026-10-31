@@ -1,0 +1,9 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "id": "motchill",
+  "name": "Motchill",
+  "version": "1.0.0",
+  "base": "https://motchilln.fm",
+  "unsupported": "needs-js",
+  "reason": "Built with Next.js client-side rendering with player hydration in browser. Video player and stream tokens are not rendered in static HTML response."
+}
