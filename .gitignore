@@ -1,0 +1,9 @@
+# Ignored binary files and reference packages
+/App tham khao/
+*.apk
+*.ipa
+*.AppImage
+*.dmg
+*.deb
+*.zip
+.DS_Store
