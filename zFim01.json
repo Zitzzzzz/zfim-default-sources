@@ -760,13 +760,14 @@
       "kind": "single",
       "id": "cobephim",
       "name": "CôBe Phim",
-      "version": "1.0.0",
-      "description": "CôBe Phim / RoPhim (cobephim.fun) - Xem phim HD Vietsub, Thuyết minh online",
+      "version": "1.1.0",
+      "description": "CôBe Phim / RoPhim (cobephim.fun) - Kho phim HD Vietsub, Thuyết minh chất lượng cao với API backend trực tiếp, giải mã StreamC & HLS siêu nhanh",
       "logo": "https://cobephim.fun/favicon.ico",
-      "base": "https://cobephim.fun",
+      "base": "https://egluy2hhb21vaw5ndw9pbmhl.darkbytes.xyz",
       "headers": {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Referer": "https://cobephim.fun/"
+        "Referer": "https://cobephim.fun/",
+        "Origin": "https://cobephim.fun"
       },
       "types": [
         "series",
@@ -774,50 +775,58 @@
       ],
       "catalogs": [
         {
+          "id": "phim-moi",
+          "type": "series",
+          "name": "Phim Mới",
+          "endpoint": "/api/v1/movies/search?keyword=&page={page}&limit=24"
+        },
+        {
           "id": "phim-bo",
           "type": "series",
           "name": "Phim Bộ",
-          "endpoint": "/phim-bo?page={page}"
+          "endpoint": "/api/v1/movies/search?keyword=&type=series&page={page}&limit=24"
         },
         {
           "id": "phim-le",
           "type": "movie",
           "name": "Phim Lẻ",
-          "endpoint": "/phim-le?page={page}"
+          "endpoint": "/api/v1/movies/search?keyword=&type=movie&page={page}&limit=24"
+        },
+        {
+          "id": "thinh-hanh",
+          "type": "series",
+          "name": "Thịnh Hành",
+          "endpoint": "/api/v1/movies/hot"
         }
       ],
-      "scrape": {
+      "json": {
         "list": {
-          "endpoint": "/phim-bo?page={page}",
-          "item": ".sw-item",
+          "path": "/api/v1/movies/search?keyword=&page={page}&limit=24",
+          "items": "result",
           "map": {
-            "id": "a.v-thumbnail @href",
-            "name": ".item-title a @text",
-            "poster": "a.v-thumbnail img @src"
+            "id": "slug",
+            "name": "name",
+            "poster": "thumbnail",
+            "background": "poster",
+            "description": "description"
           }
         },
         "meta": {
-          "endpoint": "/{slug}",
+          "path": "/api/v1/movies/by-slug/{slug}",
           "map": {
-            "name": "h1 @text",
-            "poster": "meta[property='og:image'] @content",
-            "description": "meta[name='description'] @content",
-            "videos": {
-              "item": "a[href*='/tap-']",
-              "map": {
-                "title": "@text",
-                "id": "@href"
-              }
-            }
+            "name": "movie.name",
+            "poster": "movie.thumbnail",
+            "background": "movie.poster",
+            "description": "movie.description",
+            "episodes": "movie.episodes"
           }
         },
         "streams": {
-          "endpoint": "{episodeId}",
-          "candidates": {
-            "selector": "iframe#embed-player, iframe, video, source",
-            "attr": "src",
-            "label": "@title"
-          }
+          "path": "/embed/{episode}",
+          "regexes": [
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+          ]
         }
       },
       "streamFilters": {
