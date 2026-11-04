@@ -3,8 +3,8 @@
   "kind": "collection",
   "id": "zFim01",
   "name": "zFim01",
-  "description": "Kho nguồn phim tổng hợp cao cấp zFim01 cho app zFim. Tích hợp đầy đủ: NguonC, YanHH3D, KKPhim, VSMOV, Phim E, CôBe Phim.",
-  "version": "1.0.0",
+  "description": "Kho nguồn phim và truyền hình tổng hợp cao cấp zFim01 cho app zFim. Tích hợp đầy đủ: NguonC, YanHH3D, KKPhim, VSMOV, Phim E, CôBe Phim, Việt Nga TV, Thể Thao Trực Tiếp.",
+  "version": "1.3.0",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
@@ -932,6 +932,210 @@
       },
       "streamUnwrapping": [
         "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "vietngatv",
+      "name": "Việt Nga TV",
+      "version": "1.0.0",
+      "description": "Kho truyền hình trực tiếp Việt Nga TV - Đầy đủ các kênh VTV, VTVcab, HTV, Thể Thao, Phim Truyện, Giải Trí, Thiếu Nhi và các đài địa phương chuẩn nét",
+      "logo": "https://i.postimg.cc/k2RqCj0D/VTV.png",
+      "base": "https://vietngatv.short.gy",
+      "headers": {
+        "User-Agent": "Dalvik/2.1.0"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "m3u": {
+        "url": "https://vietngatv.short.gy/vietngatv",
+        "cacheMinutes": 60,
+        "defaultHeaders": {
+          "User-Agent": "Dalvik/2.1.0"
+        }
+      },
+      "catalogs": [
+        {
+          "id": "kenh-vtv",
+          "type": "series",
+          "name": "Kênh VTV"
+        },
+        {
+          "id": "kenh-vtvcab",
+          "type": "series",
+          "name": "Kênh VTVcab"
+        },
+        {
+          "id": "kenh-htv",
+          "type": "series",
+          "name": "Kênh HTV"
+        },
+        {
+          "id": "kenh-htvc",
+          "type": "series",
+          "name": "Kênh HTVC"
+        },
+        {
+          "id": "kenh-the-thao",
+          "type": "series",
+          "name": "Kênh Thể Thao"
+        },
+        {
+          "id": "kenh-phim-truyen",
+          "type": "series",
+          "name": "Kênh Phim Truyện"
+        },
+        {
+          "id": "kenh-giai-tri",
+          "type": "series",
+          "name": "Kênh Giải Trí"
+        },
+        {
+          "id": "kenh-thiet-yeu",
+          "type": "series",
+          "name": "Kênh Thiết Yếu"
+        },
+        {
+          "id": "kenh-thieu-nhi",
+          "type": "series",
+          "name": "Kênh Thiếu Nhi"
+        },
+        {
+          "id": "kenh-dac-sac",
+          "type": "series",
+          "name": "Kênh Đặc Sắc"
+        },
+        {
+          "id": "kenh-tin-tuc",
+          "type": "series",
+          "name": "Kênh Tin Tức"
+        },
+        {
+          "id": "kenh-trong-nuoc-dia-phuong",
+          "type": "series",
+          "name": "Kênh Địa Phương"
+        },
+        {
+          "id": "kenh-ca-nhac",
+          "type": "series",
+          "name": "Kênh Ca Nhạc"
+        },
+        {
+          "id": "kenh-tong-hop-nuoc-ngoai",
+          "type": "series",
+          "name": "Kênh Nước Ngoài"
+        },
+        {
+          "id": "kenh-vov",
+          "type": "series",
+          "name": "Kênh VOV"
+        },
+        {
+          "id": "kenh-radio-trong-nuoc",
+          "type": "series",
+          "name": "Kênh Radio"
+        }
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "thtt_sports",
+      "name": "Thể Thao Trực Tiếp",
+      "version": "1.0.0",
+      "description": "Kênh phát sóng trực tiếp các trận đấu thể thao & bóng đá chuyên nghiệp: Xôi Lạc, Cola TV, Khô Gà, Vua Sân Cỏ, Sút Bóng (thtt.pages.dev)",
+      "logo": "https://cdn-icons-png.flaticon.com/512/861/861512.png",
+      "base": "https://thtt.pages.dev",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "m3u": {
+        "url": "https://thtt.pages.dev/tttt.m3u",
+        "cacheMinutes": 15
+      },
+      "catalogs": [
+        {
+          "id": "tat-ca",
+          "type": "series",
+          "name": "Tất Cả Trận Đấu"
+        },
+        {
+          "id": "xoi-lac-z-tv",
+          "type": "series",
+          "name": "Xôi Lạc Z TV"
+        },
+        {
+          "id": "cola-tv",
+          "type": "series",
+          "name": "Cola TV"
+        },
+        {
+          "id": "sut-bong-tv",
+          "type": "series",
+          "name": "Sút Bóng TV"
+        },
+        {
+          "id": "bia-om-tv",
+          "type": "series",
+          "name": "Bia Ôm TV"
+        },
+        {
+          "id": "s8-tv",
+          "type": "series",
+          "name": "S8 TV"
+        },
+        {
+          "id": "ga-vang-33-tv",
+          "type": "series",
+          "name": "Gà Vàng 33 TV"
+        },
+        {
+          "id": "ga-vang-24h-tv",
+          "type": "series",
+          "name": "Gà Vàng 24h TV"
+        },
+        {
+          "id": "kho-ga-tv",
+          "type": "series",
+          "name": "Khô Gà TV"
+        },
+        {
+          "id": "pha-lang-tv",
+          "type": "series",
+          "name": "Phá Làng TV"
+        },
+        {
+          "id": "sao-ke-tv",
+          "type": "series",
+          "name": "Sao Kê TV"
+        },
+        {
+          "id": "chuoi-chien-tv",
+          "type": "series",
+          "name": "Chuối Chiên TV"
+        },
+        {
+          "id": "vua-san-co-tv",
+          "type": "series",
+          "name": "Vua Sân Cỏ TV"
+        },
+        {
+          "id": "gio-vang-tv",
+          "type": "series",
+          "name": "Giờ Vàng TV"
+        },
+        {
+          "id": "xoi-gac-tv",
+          "type": "series",
+          "name": "Xôi Gấc TV"
+        }
       ]
     }
   ]
