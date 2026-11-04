@@ -760,8 +760,8 @@
       "kind": "single",
       "id": "cobephim",
       "name": "CôBe Phim",
-      "version": "1.1.0",
-      "description": "CôBe Phim / RoPhim (cobephim.fun) - Kho phim HD Vietsub, Thuyết minh chất lượng cao với API backend trực tiếp, giải mã StreamC & HLS siêu nhanh",
+      "version": "1.2.0",
+      "description": "CôBe Phim / RoPhim (cobephim.fun) - Kho phim HD Vietsub, Thuyết minh chất lượng cao với API backend trực tiếp, 17 chuyên mục phân loại đầy đủ, poster điện ảnh chuẩn 2:3, giải mã StreamC & HLS siêu nhanh",
       "logo": "https://cobephim.fun/favicon.ico",
       "base": "https://egluy2hhb21vaw5ndw9pbmhl.darkbytes.xyz",
       "headers": {
@@ -797,6 +797,84 @@
           "type": "series",
           "name": "Thịnh Hành",
           "endpoint": "/api/v1/movies/hot"
+        },
+        {
+          "id": "hanh-dong",
+          "type": "movie",
+          "name": "Hành Động",
+          "endpoint": "/api/v1/movies/by-category/hanh-dong?page={page}&limit=24"
+        },
+        {
+          "id": "co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/api/v1/movies/by-category/co-trang?page={page}&limit=24"
+        },
+        {
+          "id": "tinh-cam",
+          "type": "series",
+          "name": "Tình Cảm",
+          "endpoint": "/api/v1/movies/by-category/tinh-cam?page={page}&limit=24"
+        },
+        {
+          "id": "hai-huoc",
+          "type": "movie",
+          "name": "Hài Hước",
+          "endpoint": "/api/v1/movies/by-category/hai-huoc?page={page}&limit=24"
+        },
+        {
+          "id": "hinh-su",
+          "type": "series",
+          "name": "Hình Sự",
+          "endpoint": "/api/v1/movies/by-category/hinh-su?page={page}&limit=24"
+        },
+        {
+          "id": "kinh-di",
+          "type": "movie",
+          "name": "Kinh Dị",
+          "endpoint": "/api/v1/movies/by-category/kinh-di?page={page}&limit=24"
+        },
+        {
+          "id": "vo-thuat",
+          "type": "movie",
+          "name": "Võ Thuật",
+          "endpoint": "/api/v1/movies/by-category/vo-thuat?page={page}&limit=24"
+        },
+        {
+          "id": "gia-dinh",
+          "type": "series",
+          "name": "Gia Đình",
+          "endpoint": "/api/v1/movies/by-category/gia-dinh?page={page}&limit=24"
+        },
+        {
+          "id": "short-drama",
+          "type": "series",
+          "name": "Short Drama",
+          "endpoint": "/api/v1/movies/by-category/short-drama?page={page}&limit=24"
+        },
+        {
+          "id": "tai-lieu",
+          "type": "movie",
+          "name": "Tài Liệu",
+          "endpoint": "/api/v1/movies/by-category/tai-lieu?page={page}&limit=24"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/api/v1/movies/search?keyword=hoat+hinh&page={page}&limit=24"
+        },
+        {
+          "id": "phim-han-quoc",
+          "type": "series",
+          "name": "Phim Hàn Quốc",
+          "endpoint": "/api/v1/movies/search?keyword=han+quoc&page={page}&limit=24"
+        },
+        {
+          "id": "phim-trung-quoc",
+          "type": "series",
+          "name": "Phim Trung Quốc",
+          "endpoint": "/api/v1/movies/search?keyword=trung+quoc&page={page}&limit=24"
         }
       ],
       "json": {
