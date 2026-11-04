@@ -340,8 +340,8 @@
       "kind": "single",
       "id": "vsmov",
       "name": "VSMOV",
-      "version": "1.0.0",
-      "description": "Nguồn API phim miễn phí VSMOV (vsmov.com) - Kho phim phong phú đa dạng quốc gia và thể loại",
+      "version": "1.2.0",
+      "description": "Nguồn API phim miễn phí VSMOV (vsmov.com) - Đầy đủ 13 chuyên mục, phim lẻ, phim bộ, hoạt hình, quốc gia, giải mã direct signed HLS stream siêu mượt",
       "logo": "https://vsmov.com/favicon-vsm.png",
       "base": "https://vsmov.com",
       "headers": {
@@ -360,10 +360,76 @@
           "endpoint": "/api/danh-sach/phim-moi-cap-nhat?page={page}"
         },
         {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/api/danh-sach/phim-bo?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/api/danh-sach/phim-le?page={page}"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/api/the-loai/hoat-hinh?page={page}"
+        },
+        {
           "id": "subteam",
           "type": "series",
           "name": "Phim Subteam",
           "endpoint": "/api/danh-sach/subteam?page={page}"
+        },
+        {
+          "id": "han-quoc",
+          "type": "series",
+          "name": "Phim Hàn Quốc",
+          "endpoint": "/api/quoc-gia/han-quoc?page={page}"
+        },
+        {
+          "id": "trung-quoc",
+          "type": "series",
+          "name": "Phim Trung Quốc",
+          "endpoint": "/api/quoc-gia/trung-quoc?page={page}"
+        },
+        {
+          "id": "au-my",
+          "type": "movie",
+          "name": "Phim Âu Mỹ",
+          "endpoint": "/api/quoc-gia/au-my?page={page}"
+        },
+        {
+          "id": "hanh-dong",
+          "type": "movie",
+          "name": "Hành Động",
+          "endpoint": "/api/the-loai/hanh-dong?page={page}"
+        },
+        {
+          "id": "co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/api/the-loai/co-trang?page={page}"
+        },
+        {
+          "id": "lang-man",
+          "type": "series",
+          "name": "Lãng Mạn",
+          "endpoint": "/api/the-loai/lang-man?page={page}"
+        },
+        {
+          "id": "khoa-hoc-vien-tuong",
+          "type": "movie",
+          "name": "Khoa Học Viễn Tưởng",
+          "endpoint": "/api/the-loai/khoa-hoc-vien-tuong?page={page}"
+        },
+        {
+          "id": "kinh-di",
+          "type": "movie",
+          "name": "Kinh Dị",
+          "endpoint": "/api/the-loai/kinh-di?page={page}"
         }
       ],
       "json": {
@@ -374,7 +440,7 @@
             "id": "slug",
             "name": "name",
             "poster": "poster_url",
-            "description": "description"
+            "description": "origin_name"
           }
         },
         "meta": {
@@ -382,15 +448,15 @@
           "map": {
             "name": "movie.name",
             "poster": "movie.poster_url",
-            "description": "movie.description",
+            "description": "movie.content",
             "episodes": "episodes"
           }
         },
         "streams": {
           "path": "/api/phim/{slug}",
           "regexes": [
-            "https?:\\/\\/[^\"'\\s]+\\.m3u8",
-            "https?:\\/\\/[^\"'\\s]+\\.mp4"
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
           ]
         }
       },
