@@ -3,8 +3,8 @@
   "kind": "single",
   "id": "yanhh3d",
   "name": "YanHH3D 4K",
-  "version": "1.0.4",
-  "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh từ yanhh3d.de (tự động giải mã stream pU/sU)",
+  "version": "1.0.5",
+  "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh từ yanhh3d.de (tự động phân tách server Thuyết Minh & Vietsub, giải mã stream pU/sU)",
   "logo": "https://yanhh3d.de/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
   "base": "https://yanhh3d.de",
   "dynamicDomainUrl": "https://bit.ly/yanhh3d",
@@ -24,10 +24,34 @@
       "endpoint": "/moi-cap-nhat?page={page}"
     },
     {
+      "id": "bang-xep-hang",
+      "type": "series",
+      "name": "Bảng Xếp Hạng",
+      "endpoint": "/?page={page}"
+    },
+    {
       "id": "hoat-hinh-3d",
       "type": "series",
       "name": "Hoạt Hình 3D",
       "endpoint": "/hoat-hinh-3d?page={page}"
+    },
+    {
+      "id": "hoat-hinh-2d",
+      "type": "series",
+      "name": "Hoạt Hình 2D",
+      "endpoint": "/hoat-hinh-2d?page={page}"
+    },
+    {
+      "id": "hoat-hinh-4k",
+      "type": "series",
+      "name": "Hoạt Hình 4K",
+      "endpoint": "/hoat-hinh-4k?page={page}"
+    },
+    {
+      "id": "hoat-hinh-ai",
+      "type": "series",
+      "name": "Hoạt Hình AI",
+      "endpoint": "/hoat-hinh-ai?page={page}"
     },
     {
       "id": "dang-chieu",
@@ -38,24 +62,72 @@
     {
       "id": "hoan-thanh",
       "type": "series",
-      "name": "Hoàn Thành",
+      "name": "Đã Hoàn Thành",
       "endpoint": "/hoan-thanh?page={page}"
     },
     {
       "id": "phim-le",
       "type": "movie",
-      "name": "Phim Lẻ",
+      "name": "Phim Lẻ | OVA",
       "endpoint": "/phim-le?page={page}"
+    },
+    {
+      "id": "the-loai-huyen-huyen",
+      "type": "series",
+      "name": "Huyền Huyễn",
+      "endpoint": "/the-loai/huyen-huyen?page={page}"
+    },
+    {
+      "id": "the-loai-tien-hiep",
+      "type": "series",
+      "name": "Tiên Hiệp",
+      "endpoint": "/the-loai/tien-hiep?page={page}"
+    },
+    {
+      "id": "the-loai-trung-sinh",
+      "type": "series",
+      "name": "Trùng Sinh",
+      "endpoint": "/the-loai/trung-sinh?page={page}"
+    },
+    {
+      "id": "the-loai-xuyen-khong",
+      "type": "series",
+      "name": "Xuyên Không",
+      "endpoint": "/the-loai/xuyen-khong?page={page}"
+    },
+    {
+      "id": "the-loai-kiem-hiep",
+      "type": "series",
+      "name": "Kiếm Hiệp",
+      "endpoint": "/the-loai/kiem-hiep?page={page}"
+    },
+    {
+      "id": "the-loai-co-trang",
+      "type": "series",
+      "name": "Cổ Trang",
+      "endpoint": "/the-loai/co-trang?page={page}"
+    },
+    {
+      "id": "the-loai-hai-huoc",
+      "type": "series",
+      "name": "Hài Hước",
+      "endpoint": "/the-loai/hai-huoc?page={page}"
+    },
+    {
+      "id": "the-loai-hien-dai",
+      "type": "series",
+      "name": "Hiện Đại",
+      "endpoint": "/the-loai/hien-dai?page={page}"
     }
   ],
   "scrape": {
     "list": {
       "endpoint": "/moi-cap-nhat?page={page}",
-      "item": ".flw-item",
+      "item": ".flw-item, li.item-top",
       "map": {
-        "id": "a.film-poster-ahref @href",
-        "name": "h3.film-name a @text",
-        "poster": "img.film-poster-img @data-src"
+        "id": "a.film-poster-ahref @href, .film-poster a @href, h3.film-name a @href, a @href",
+        "name": "h3.film-name a @text, .film-name a @text, @title",
+        "poster": "img.film-poster-img @data-src, img @data-src, img @src"
       }
     },
     "meta": {
@@ -65,7 +137,8 @@
         "poster": "img.film-poster-img @data-src",
         "description": ".film-description .text @text",
         "videos": {
-          "item": ".ep-item",
+          "servers": "ul.sever-ep li a, ul.nav-tabs li a[data-toggle=\"tab\"], .server-tabs a",
+          "item": ".ep-item, a.ssl-item",
           "map": {
             "title": "@title",
             "id": "@href"
