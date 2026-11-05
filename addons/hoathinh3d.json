@@ -2,8 +2,18 @@
   "$schema": "zfim/addon-json/v1",
   "id": "hoathinh3d",
   "name": "HoatHinh3D",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Kho Hoạt Hình 3D Trung Quốc từ hoathinh3d.pw - Yêu cầu engine giải mã giao thức token halim AES-256-GCM qua /wp-json/halim/v1/player-key",
+  "logo": "https://hoathinh3d.pw/wp-content/uploads/2023/09/favicon.png",
   "base": "https://hoathinh3d.pw",
-  "unsupported": "needs-js",
-  "reason": "Halim WordPress theme encrypts stream endpoints with dynamic AES-GCM tokens negotiated per-session via /wp-json/halim/v1/player-key. Requires dynamic browser JavaScript / Web Crypto API to decrypt stream URLs."
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://hoathinh3d.pw/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "unsupported": "needs-engine-update",
+  "reason": "Halim WordPress theme encrypts stream endpoints with dynamic AES-256-GCM tokens negotiated per-session via player.php and /wp-json/halim/v1/player-key with X-Halim-Client header. Embedded stream points to scontent.ibytedance.net. Requires a dedicated Flutter engine resolver or headless webview."
 }

@@ -2,13 +2,13 @@
   "$schema": "zfim/addon-json/v1",
   "kind": "single",
   "id": "hh3d",
-  "name": "HH3D.com",
-  "version": "1.0.0",
-  "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh tổng hợp từ HH3D.com",
+  "name": "HH3D",
+  "version": "1.1.0",
+  "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh chất lượng cao từ hh3d.com, phân loại server Vietsub/Thuyết minh thông minh và giải mã stream data-obf siêu tốc",
   "logo": "https://www.hh3d.com/storage/files/hh3d_favicon.png",
   "base": "https://www.hh3d.com",
   "headers": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Referer": "https://www.hh3d.com/"
   },
   "types": [
@@ -16,6 +16,30 @@
     "movie"
   ],
   "catalogs": [
+    {
+      "id": "moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/danh-sach/moi-cap-nhat?page={page}"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ",
+      "endpoint": "/danh-sach/phim-bo?page={page}"
+    },
+    {
+      "id": "hoan-thanh",
+      "type": "series",
+      "name": "Đã Hoàn Thành",
+      "endpoint": "/danh-sach/hoan-thanh?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ | OVA",
+      "endpoint": "/danh-sach/phim-le?page={page}"
+    },
     {
       "id": "tien-hiep",
       "type": "series",
@@ -29,67 +53,99 @@
       "endpoint": "/the-loai/huyen-huyen?page={page}"
     },
     {
-      "id": "phieu-luu",
+      "id": "trung-sinh",
       "type": "series",
-      "name": "Phiêu Lưu",
-      "endpoint": "/the-loai/phieu-luu?page={page}"
+      "name": "Trùng Sinh",
+      "endpoint": "/the-loai/trung-sinh?page={page}"
     },
     {
-      "id": "phim-le",
-      "type": "movie",
-      "name": "Phim Lẻ",
-      "endpoint": "/danh-sach/phim-le?page={page}"
+      "id": "xuyen-khong",
+      "type": "series",
+      "name": "Xuyên Không",
+      "endpoint": "/the-loai/xuyen-khong?page={page}"
+    },
+    {
+      "id": "luyen-cap",
+      "type": "series",
+      "name": "Luyện Cấp",
+      "endpoint": "/the-loai/luyen-cap?page={page}"
+    },
+    {
+      "id": "he-thong",
+      "type": "series",
+      "name": "Hệ Thống",
+      "endpoint": "/the-loai/he-thong?page={page}"
+    },
+    {
+      "id": "kiem-hiep",
+      "type": "series",
+      "name": "Kiếm Hiệp",
+      "endpoint": "/the-loai/kiem-hiep?page={page}"
+    },
+    {
+      "id": "di-gioi",
+      "type": "series",
+      "name": "Dị Giới",
+      "endpoint": "/the-loai/di-gioi?page={page}"
     }
   ],
   "scrape": {
     "list": {
-      "endpoint": "/the-loai/tien-hiep?page={page}",
+      "endpoint": "/danh-sach/moi-cap-nhat?page={page}",
       "item": ".halim-item",
       "map": {
         "id": "a.halim-thumb @href",
         "name": "a.halim-thumb @title",
-        "poster": "img @data-src"
+        "poster": "img @data-src, img @src"
       }
     },
     "meta": {
       "endpoint": "/{slug}",
       "map": {
-        "name": "h1.entry-title @text",
-        "poster": "img.movie-thumb @data-src",
+        "name": "h1.entry-title @text, .entry-title @text",
+        "poster": "img.movie-thumb @src, img.movie-thumb @data-src, img.post-thumb @data-src, img @src",
         "description": ".entry-content @text",
         "videos": {
-          "item": ".halim-episode a",
+          "servers": "ul.nav-tabs li a, .halim-server-title",
+          "item": "ul.halim-list-eps li.halim-episode a, .halim-list-eps a",
           "map": {
-            "title": "@title",
+            "title": "@title, span @text",
             "id": "@href"
           }
         }
       }
     },
     "streams": {
-      "endpoint": "{episodeId}",
+      "endpoint": "/{slug}",
       "candidates": {
-        "selector": "span.streaming-server, .streaming-server",
+        "selector": "span.streaming-server, .streaming-server, #player-wrapper iframe, iframe",
         "attr": "data-link",
         "label": "@text"
       }
     }
   },
   "streamFilters": {
-    "blocklistHosts": [],
+    "blocklistHosts": [
+      "facebook.com",
+      "google.com"
+    ],
     "bannedTerms": [
       "quangcao",
-      "promo"
+      "promo",
+      "intro"
     ],
     "falseStreamExts": [
       ".jpg",
       ".png",
       ".webp",
-      ".vtt"
+      ".vtt",
+      ".svg"
     ],
     "allowedIndicators": [
       ".m3u8",
-      ".mp4"
+      ".mp4",
+      "stream",
+      "video"
     ]
   },
   "streamUnwrapping": [
