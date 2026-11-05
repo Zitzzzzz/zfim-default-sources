@@ -4,7 +4,7 @@
   "id": "zFim01",
   "name": "zFim01",
   "description": "Kho nguồn phim và truyền hình tổng hợp cao cấp zFim01 cho app zFim. Tích hợp đầy đủ: NguonC, YanHH3D, HH3D, KKPhim, VSMOV, Phim E, CôBe Phim, Việt Nga TV, Thể Thao Trực Tiếp.",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
@@ -386,14 +386,15 @@
       "kind": "single",
       "id": "hh3d",
       "name": "HH3D",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh chất lượng cao từ hh3d.com, phân tách server Vietsub/Thuyết minh thông minh và giải mã stream data-obf siêu tốc",
       "logo": "https://www.hh3d.com/storage/files/hh3d_favicon.png",
       "base": "https://www.hh3d.com",
       "headers": {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Referer": "https://www.hh3d.com/",
-        "Connection": "close"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Referer": "https://www.hh3d.com/"
       },
       "types": [
         "series",
@@ -432,14 +433,14 @@
           "map": {
             "id": "a.halim-thumb @href",
             "name": "a.halim-thumb @title, .entry-title @text",
-            "poster": ".halim-thumb img @data-src, .halim-thumb img @src, img @data-src, img @src"
+            "poster": ".halim-thumb img @data-src, .halim-thumb img @src, figure img @data-src, figure img @src, img.lazyload @data-src, img @data-src, img @src"
           }
         },
         "meta": {
           "endpoint": "/{slug}",
           "map": {
             "name": "h1.entry-title @text, .entry-title @text",
-            "poster": ".movie-poster img @src, img.movie-thumb @src, .movie-thumb @data-src, img @src",
+            "poster": ".movie-poster img @src, .movie-poster img @data-src, img.movie-thumb @src, .movie-thumb @data-src, img @src",
             "description": ".entry-content @text",
             "released": ".released @text",
             "videos": {
