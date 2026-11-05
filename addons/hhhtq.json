@@ -1,19 +1,73 @@
 {
   "$schema": "zfim/addon-json/v1",
+  "kind": "single",
   "id": "hhhtq",
   "name": "HHHTQ.Team",
-  "version": "1.0.1",
-  "description": "Kho Hoạt Hình Trung Quốc từ hhhtq.team - Sử dụng trình phát nhúng bên thứ ba (Dailymotion và AbyssPlayer)",
+  "version": "1.1.0",
+  "description": "Kho Hoạt Hình Trung Quốc Vietsub từ hhhtq.team với hàng ngàn tập phim đa dạng",
   "logo": "https://hhhtq.team/photos.jpg",
   "base": "https://hhhtq.team",
   "headers": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Referer": "https://hhhtq.team/"
   },
   "types": [
     "series",
     "movie"
   ],
-  "unsupported": "needs-engine-update",
-  "reason": "Episodes are embedded through third-party players: Server 1 uses Dailymotion (geo.dailymotion.com) requiring signed player tokens; Server 2 uses AbyssPlayer (play.abyssplayer.com) with anti-adblock/sandbox checks and encrypted bundle iamcdn.net/player-v2/lite.bundle.js. Requires a full browser runtime or scrape-server unwrapper."
+  "catalogs": [
+    {
+      "id": "moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/?page={page}"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ",
+      "endpoint": "/the-loai/phim-bo/?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ",
+      "endpoint": "/the-loai/phim-le/?page={page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/?page={page}",
+      "item": ".myui-vodlist__box",
+      "map": {
+        "id": "a.myui-vodlist__thumb @href",
+        "name": "a.myui-vodlist__thumb @title, .myui-vodlist__detail h4 a @text",
+        "poster": "a.myui-vodlist__thumb @style, a.myui-vodlist__thumb @data-original, img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1.title @text, .myui-content__detail h1 @text",
+        "poster": ".myui-content__thumb img @data-original, .myui-content__thumb img @src, .myui-content__thumb a @style",
+        "description": ".myui-content__detail .desc @text, .sketch @text",
+        "videos": {
+          "servers": "ul.nav-tabs li a, .myui-panel_hd .nav li a",
+          "item": ".myui-content__list li a",
+          "map": {
+            "title": "b @text, @text",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": ".myui-player__video iframe, iframe",
+        "attr": "src",
+        "label": "@title"
+      }
+    }
+  }
 }

@@ -1,19 +1,91 @@
 {
   "$schema": "zfim/addon-json/v1",
+  "kind": "single",
   "id": "hoathinh3d",
   "name": "HoatHinh3D",
-  "version": "1.0.1",
-  "description": "Kho Hoạt Hình 3D Trung Quốc từ hoathinh3d.pw - Yêu cầu engine giải mã giao thức token halim AES-256-GCM qua /wp-json/halim/v1/player-key",
-  "logo": "https://hoathinh3d.pw/wp-content/uploads/2023/09/favicon.png",
+  "version": "1.1.0",
+  "description": "Kho Hoạt Hình 3D Trung Quốc từ hoathinh3d.pw với hàng trăm bộ phim hoạt hình 3D Vietsub mới nhất và giải mã Halim player",
+  "logo": "https://hoathinh3d.pw/wp-content/uploads/2021/03/logo1.png",
   "base": "https://hoathinh3d.pw",
   "headers": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Referer": "https://hoathinh3d.pw/"
   },
   "types": [
     "series",
     "movie"
   ],
-  "unsupported": "needs-engine-update",
-  "reason": "Halim WordPress theme encrypts stream endpoints with dynamic AES-256-GCM tokens negotiated per-session via player.php and /wp-json/halim/v1/player-key with X-Halim-Client header. Embedded stream points to scontent.ibytedance.net. Requires a dedicated Flutter engine resolver or headless webview."
+  "catalogs": [
+    {
+      "id": "moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/page/{page}"
+    },
+    {
+      "id": "phim-dang-chieu",
+      "type": "series",
+      "name": "Đang Chiếu",
+      "endpoint": "/phim-dang-chieu/page/{page}"
+    },
+    {
+      "id": "phim-hoan-thanh",
+      "type": "series",
+      "name": "Đã Hoàn Thành",
+      "endpoint": "/phim-hoan-thanh/page/{page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ | OVA",
+      "endpoint": "/phim-hoat-hinh-3d-le/page/{page}"
+    },
+    {
+      "id": "tien-hiep",
+      "type": "series",
+      "name": "Tiên Hiệp",
+      "endpoint": "/tien-hiep/page/{page}"
+    },
+    {
+      "id": "huyen-huyen",
+      "type": "series",
+      "name": "Huyền Huyễn",
+      "endpoint": "/huyen-huyen/page/{page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/page/{page}",
+      "item": ".halim-item",
+      "map": {
+        "id": "a.halim-thumb @href",
+        "name": "a.halim-thumb @title, .entry-title @text",
+        "poster": "figure img @src, figure img @data-src, img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1.entry-title @text, .entry-title @text",
+        "poster": ".movie-poster img @src, .movie-poster img @data-src, figure img @src, img @src",
+        "description": ".entry-content @text, #info-story @text",
+        "videos": {
+          "servers": "ul.nav-tabs li a, .nav-tabs li a",
+          "item": "li.halim-episode a, a.halim-btn",
+          "map": {
+            "title": "span @text, @title",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "a.halim-btn, .halim-episode a, iframe",
+        "attr": "href",
+        "label": "@text"
+      }
+    }
+  }
 }
