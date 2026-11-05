@@ -1,0 +1,91 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "yanhh3dee",
+  "name": "YanHH3D.ee 4K",
+  "version": "1.0.0",
+  "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh 4K từ yanhh3d.ee với hàng ngàn tập phim hoạt hình 3D cập nhật mới nhất",
+  "logo": "https://yanhh3d.ee/wp-content/uploads/2025/12/BwAlRbHRpMjlS1xLPnxb.png",
+  "base": "https://yanhh3d.ee",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Referer": "https://yanhh3d.ee/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "yanhh3d-moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/yanhh3d-moi-cap-nhat/page/{page}"
+    },
+    {
+      "id": "top-yanhh3d-xem-nhieu",
+      "type": "series",
+      "name": "Top Xem Nhiều",
+      "endpoint": "/top-yanhh3d-xem-nhieu/page/{page}"
+    },
+    {
+      "id": "yanhh3d-hoan-thanh",
+      "type": "series",
+      "name": "Đã Hoàn Thành",
+      "endpoint": "/yanhh3d-hoan-thanh/page/{page}"
+    },
+    {
+      "id": "tu-tien",
+      "type": "series",
+      "name": "Tu Tiên",
+      "endpoint": "/tu-tien/page/{page}"
+    },
+    {
+      "id": "trung-sinh",
+      "type": "series",
+      "name": "Trùng Sinh",
+      "endpoint": "/trung-sinh/page/{page}"
+    },
+    {
+      "id": "do-thi",
+      "type": "series",
+      "name": "Đô Thị",
+      "endpoint": "/do-thi/page/{page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/yanhh3d-moi-cap-nhat/page/{page}",
+      "item": ".film_list-wrap .flw-item, .flw-item",
+      "map": {
+        "id": "a.film-poster-ahref @href",
+        "name": ".film-name a @title, .film-name a @text, a.film-poster-ahref @title",
+        "poster": "img.film-poster-img @src, img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h2.heading-name @text, h1.ct-page-title @text, h1 @text",
+        "poster": "img.film-poster-img @src, .anis-cover @style, meta[property=\"og:image\"] @content",
+        "description": ".text-content @text, .film-description @text",
+        "videos": {
+          "servers": ".ps_-block .cat-heading @text, .cat-heading @text",
+          "item": ".ep-range a.ep-item, a.ssl-item.ep-item",
+          "map": {
+            "title": "@title, @text",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "a.btn3dsv, span.btn3dsv, a.ssl-item.ep-item, iframe",
+        "attr": "href, data-type, src",
+        "label": "@text"
+      }
+    }
+  }
+}
