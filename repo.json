@@ -1,23 +1,214 @@
 {
   "$schema": "zfim/addon-json/v1",
   "kind": "collection",
-  "id": "zfim-default-sources",
-  "name": "Kho Nguồn Gốc zFim",
-  "description": "Kho nguồn phim & hoạt hình chính thức được kiểm thử và xác minh cho ứng dụng zFim",
-  "version": "1.0.0",
+  "id": "zFim01",
+  "name": "zFim01",
+  "description": "Kho nguồn tổng hợp zFim01 chính thức (15 nguồn: Phim truyện HD, Hoạt hình 3D Trung Quốc 4K, Anime, Phim bộ, Thể thao trực tiếp & Kênh truyền hình)",
+  "version": "1.5.0",
   "addons": [
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "nguonc",
+      "name": "Nguồn C",
+      "version": "1.3.0",
+      "description": "Kho phim NguonC (phim.nguonc.com) - Chuẩn mực vàng cho zFim với luồng HLS siêu tốc, poster điện ảnh 2:3 chuẩn sắc nét, 19 chuyên mục phong phú",
+      "logo": "https://phim.nguonc.com/favicon.ico",
+      "base": "https://phim.nguonc.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Referer": "https://phim.nguonc.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "phim-moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/api/films/phim-moi-cap-nhat?page={page}"
+        },
+        {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/api/films/danh-sach/phim-bo?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/api/films/danh-sach/phim-le?page={page}"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/api/films/the-loai/hoat-hinh?page={page}"
+        },
+        {
+          "id": "tv-shows",
+          "type": "series",
+          "name": "TV Shows",
+          "endpoint": "/api/films/danh-sach/tv-shows?page={page}"
+        },
+        {
+          "id": "phim-ai",
+          "type": "movie",
+          "name": "Phim AI",
+          "endpoint": "/api/films/danh-sach/phim-ai?page={page}"
+        },
+        {
+          "id": "the-loai-hanh-dong",
+          "type": "movie",
+          "name": "Hành Động",
+          "endpoint": "/api/films/the-loai/hanh-dong?page={page}"
+        },
+        {
+          "id": "the-loai-phieu-luu",
+          "type": "movie",
+          "name": "Phiêu Lưu",
+          "endpoint": "/api/films/the-loai/phieu-luu?page={page}"
+        },
+        {
+          "id": "the-loai-phim-hai",
+          "type": "movie",
+          "name": "Hài Hước",
+          "endpoint": "/api/films/the-loai/phim-hai?page={page}"
+        },
+        {
+          "id": "the-loai-co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/api/films/the-loai/co-trang?page={page}"
+        },
+        {
+          "id": "the-loai-tam-ly",
+          "type": "series",
+          "name": "Tâm Lý",
+          "endpoint": "/api/films/the-loai/tam-ly?page={page}"
+        },
+        {
+          "id": "the-loai-tinh-cam",
+          "type": "series",
+          "name": "Tình Cảm",
+          "endpoint": "/api/films/the-loai/tinh-cam?page={page}"
+        },
+        {
+          "id": "the-loai-hinh-su",
+          "type": "series",
+          "name": "Hình Sự",
+          "endpoint": "/api/films/the-loai/hinh-su?page={page}"
+        },
+        {
+          "id": "the-loai-khoa-hoc-vien-tuong",
+          "type": "movie",
+          "name": "Khoa Học Viễn Tưởng",
+          "endpoint": "/api/films/the-loai/khoa-hoc-vien-tuong?page={page}"
+        },
+        {
+          "id": "the-loai-kinh-di",
+          "type": "movie",
+          "name": "Kinh Dị",
+          "endpoint": "/api/films/the-loai/kinh-di?page={page}"
+        },
+        {
+          "id": "the-loai-chien-tranh",
+          "type": "movie",
+          "name": "Chiến Tranh",
+          "endpoint": "/api/films/the-loai/chien-tranh?page={page}"
+        },
+        {
+          "id": "the-loai-bi-an",
+          "type": "series",
+          "name": "Bí Ẩn",
+          "endpoint": "/api/films/the-loai/bi-an?page={page}"
+        },
+        {
+          "id": "the-loai-gia-tuong",
+          "type": "series",
+          "name": "Giả Tưởng",
+          "endpoint": "/api/films/the-loai/gia-tuong?page={page}"
+        },
+        {
+          "id": "the-loai-lich-su",
+          "type": "movie",
+          "name": "Lịch Sử",
+          "endpoint": "/api/films/the-loai/lich-su?page={page}"
+        }
+      ],
+      "json": {
+        "list": {
+          "path": "/api/films/phim-moi-cap-nhat?page={page}",
+          "items": "items",
+          "map": {
+            "id": "slug",
+            "name": "name",
+            "poster": "thumb_url_webp",
+            "background": "poster_url_webp",
+            "description": "description"
+          }
+        },
+        "meta": {
+          "path": "/api/film/{slug}",
+          "map": {
+            "name": "movie.name",
+            "poster": "movie.thumb_url_webp",
+            "background": "movie.poster_url_webp",
+            "description": "movie.description",
+            "episodes": "movie.episodes"
+          }
+        },
+        "streams": {
+          "path": "/api/film/{slug}",
+          "regexes": [
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+          ]
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [
+          "ads.example.com",
+          "doubleclick.net",
+          "googlesyndication.com"
+        ],
+        "bannedTerms": [
+          "quangcao",
+          "promo",
+          "intro"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt",
+          ".svg"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4"
+        ]
+      },
+      "streamUnwrapping": [
+        "direct-m3u8"
+      ]
+    },
     {
       "$schema": "zfim/addon-json/v1",
       "kind": "single",
       "id": "yanhh3d",
       "name": "YanHH3D 4K",
-      "version": "1.0.0",
-      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh chất lượng cao",
-      "logo": "https://yanhh3d.nl/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
-      "base": "https://yanhh3d.plus",
+      "version": "1.0.5",
+      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh từ yanhh3d.de (tự động phân tách server Thuyết Minh & Vietsub, giải mã stream pU/sU)",
+      "logo": "https://yanhh3d.de/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
+      "base": "https://yanhh3d.de",
+      "dynamicDomainUrl": "https://bit.ly/yanhh3d",
       "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": "https://yanhh3d.plus/"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Referer": "https://yanhh3d.de/"
       },
       "types": [
         "series",
@@ -31,10 +222,34 @@
           "endpoint": "/moi-cap-nhat?page={page}"
         },
         {
+          "id": "bang-xep-hang",
+          "type": "series",
+          "name": "Bảng Xếp Hạng",
+          "endpoint": "/?page={page}"
+        },
+        {
           "id": "hoat-hinh-3d",
           "type": "series",
           "name": "Hoạt Hình 3D",
           "endpoint": "/hoat-hinh-3d?page={page}"
+        },
+        {
+          "id": "hoat-hinh-2d",
+          "type": "series",
+          "name": "Hoạt Hình 2D",
+          "endpoint": "/hoat-hinh-2d?page={page}"
+        },
+        {
+          "id": "hoat-hinh-4k",
+          "type": "series",
+          "name": "Hoạt Hình 4K",
+          "endpoint": "/hoat-hinh-4k?page={page}"
+        },
+        {
+          "id": "hoat-hinh-ai",
+          "type": "series",
+          "name": "Hoạt Hình AI",
+          "endpoint": "/hoat-hinh-ai?page={page}"
         },
         {
           "id": "dang-chieu",
@@ -45,24 +260,72 @@
         {
           "id": "hoan-thanh",
           "type": "series",
-          "name": "Hoàn Thành",
+          "name": "Đã Hoàn Thành",
           "endpoint": "/hoan-thanh?page={page}"
         },
         {
           "id": "phim-le",
           "type": "movie",
-          "name": "Phim Lẻ",
+          "name": "Phim Lẻ | OVA",
           "endpoint": "/phim-le?page={page}"
+        },
+        {
+          "id": "the-loai-huyen-huyen",
+          "type": "series",
+          "name": "Huyền Huyễn",
+          "endpoint": "/the-loai/huyen-huyen?page={page}"
+        },
+        {
+          "id": "the-loai-tien-hiep",
+          "type": "series",
+          "name": "Tiên Hiệp",
+          "endpoint": "/the-loai/tien-hiep?page={page}"
+        },
+        {
+          "id": "the-loai-trung-sinh",
+          "type": "series",
+          "name": "Trùng Sinh",
+          "endpoint": "/the-loai/trung-sinh?page={page}"
+        },
+        {
+          "id": "the-loai-xuyen-khong",
+          "type": "series",
+          "name": "Xuyên Không",
+          "endpoint": "/the-loai/xuyen-khong?page={page}"
+        },
+        {
+          "id": "the-loai-kiem-hiep",
+          "type": "series",
+          "name": "Kiếm Hiệp",
+          "endpoint": "/the-loai/kiem-hiep?page={page}"
+        },
+        {
+          "id": "the-loai-co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/the-loai/co-trang?page={page}"
+        },
+        {
+          "id": "the-loai-hai-huoc",
+          "type": "series",
+          "name": "Hài Hước",
+          "endpoint": "/the-loai/hai-huoc?page={page}"
+        },
+        {
+          "id": "the-loai-hien-dai",
+          "type": "series",
+          "name": "Hiện Đại",
+          "endpoint": "/the-loai/hien-dai?page={page}"
         }
       ],
       "scrape": {
         "list": {
           "endpoint": "/moi-cap-nhat?page={page}",
-          "item": ".flw-item",
+          "item": ".flw-item, li.item-top",
           "map": {
-            "id": "a.film-poster-ahref @href",
-            "name": "h3.film-name a @text",
-            "poster": "img.film-poster-img @data-src"
+            "id": "a.film-poster-ahref @href, .film-poster a @href, h3.film-name a @href, a @href",
+            "name": "h3.film-name a @text, .film-name a @text, @title",
+            "poster": "img.film-poster-img @data-src, img @data-src, img @src"
           }
         },
         "meta": {
@@ -72,7 +335,8 @@
             "poster": "img.film-poster-img @data-src",
             "description": ".film-description .text @text",
             "videos": {
-              "item": ".ep-item",
+              "servers": "ul.sever-ep li a, ul.nav-tabs li a[data-toggle=\"tab\"], .server-tabs a",
+              "item": ".ep-item, a.ssl-item",
               "map": {
                 "title": "@title",
                 "id": "@href"
@@ -120,36 +384,822 @@
     {
       "$schema": "zfim/addon-json/v1",
       "kind": "single",
-      "id": "kkphim",
-      "name": "KKPhim (Xem Mọi Thiết Bị)",
+      "id": "yanhh",
+      "name": "YanHH",
       "version": "1.0.0",
-      "description": "Kho phim lẻ, phim bộ, hoạt hình cập nhật liên tục từ PhimAPI / KKPhim",
-      "logo": "https://phimimg.com/uploads/movies/logo.png",
+      "description": "Kho Hoạt Hình 3D Trung Quốc từ yanhh.com với hệ thống giải mã XOR stream HLS m3u8 siêu tốc",
+      "logo": "https://yanhh.com/wp-content/uploads/2026/07/cropped-fav-yanhh-192x192.png",
+      "base": "https://yanhh.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://yanhh.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/page/{page}/"
+        },
+        {
+          "id": "tien-hiep",
+          "type": "series",
+          "name": "Tiên Hiệp",
+          "endpoint": "/the-loai/tien-hiep/page/{page}/"
+        },
+        {
+          "id": "huyen-huyen",
+          "type": "series",
+          "name": "Huyền Huyễn",
+          "endpoint": "/the-loai/huyen-huyen/page/{page}/"
+        },
+        {
+          "id": "trung-sinh",
+          "type": "series",
+          "name": "Trùng Sinh",
+          "endpoint": "/the-loai/trung-sinh/page/{page}/"
+        },
+        {
+          "id": "kiem-hiep",
+          "type": "series",
+          "name": "Kiếm Hiệp",
+          "endpoint": "/the-loai/kiem-hiep/page/{page}/"
+        },
+        {
+          "id": "xuyen-khong",
+          "type": "series",
+          "name": "Xuyên Không",
+          "endpoint": "/the-loai/xuyen-khong/page/{page}/"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/page/{page}/",
+          "item": ".movie-item-4, article.movie-item, .item-movie",
+          "map": {
+            "id": "a @href",
+            "name": ".movie-title-horizontal a @text, .movie-title a @text, h3 a @text, a @title",
+            "poster": "img @data-src, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}/",
+          "map": {
+            "name": "h1 @text, .movie-title @text",
+            "poster": "img.movie-poster @data-src, img.movie-poster @src, img @data-src, img @src",
+            "description": ".movie-description @text, .movie-content @text, .entry-content @text",
+            "videos": {
+              "servers": ".server-item @text, .episodes-title @text",
+              "item": ".episodes-grid a.episode-item, a.episode-item",
+              "map": {
+                "title": "@text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": ".stream-video-section, #video-player-m3u8, a.episode-item, iframe",
+            "attr": "href",
+            "label": "@text"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "yanhh3dee",
+      "name": "YanHH3D.ee 4K",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh 4K từ yanhh3d.ee với hàng ngàn tập phim hoạt hình 3D cập nhật mới nhất",
+      "logo": "https://yanhh3d.ee/wp-content/uploads/2025/12/BwAlRbHRpMjlS1xLPnxb.png",
+      "base": "https://yanhh3d.ee",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://yanhh3d.ee/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "yanhh3d-moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/yanhh3d-moi-cap-nhat/page/{page}"
+        },
+        {
+          "id": "top-yanhh3d-xem-nhieu",
+          "type": "series",
+          "name": "Top Xem Nhiều",
+          "endpoint": "/top-yanhh3d-xem-nhieu/page/{page}"
+        },
+        {
+          "id": "yanhh3d-hoan-thanh",
+          "type": "series",
+          "name": "Đã Hoàn Thành",
+          "endpoint": "/yanhh3d-hoan-thanh/page/{page}"
+        },
+        {
+          "id": "tu-tien",
+          "type": "series",
+          "name": "Tu Tiên",
+          "endpoint": "/tu-tien/page/{page}"
+        },
+        {
+          "id": "trung-sinh",
+          "type": "series",
+          "name": "Trùng Sinh",
+          "endpoint": "/trung-sinh/page/{page}"
+        },
+        {
+          "id": "do-thi",
+          "type": "series",
+          "name": "Đô Thị",
+          "endpoint": "/do-thi/page/{page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/yanhh3d-moi-cap-nhat/page/{page}",
+          "item": ".film_list-wrap .flw-item, .flw-item",
+          "map": {
+            "id": "a.film-poster-ahref @href",
+            "name": ".film-name a @title, .film-name a @text, a.film-poster-ahref @title",
+            "poster": "img.film-poster-img @src, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h2.heading-name @text, h1.ct-page-title @text, h1 @text",
+            "poster": "img.film-poster-img @src, .anis-cover @style, meta[property=\"og:image\"] @content",
+            "description": ".text-content @text, .film-description @text",
+            "videos": {
+              "servers": ".ps_-block .cat-heading @text, .cat-heading @text",
+              "item": ".ep-range a.ep-item, a.ssl-item.ep-item",
+              "map": {
+                "title": "@title, @text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.btn3dsv, span.btn3dsv, a.ssl-item.ep-item, iframe",
+            "attr": "href, data-type, src",
+            "label": "@text"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hoathinh3dsub",
+      "name": "Hoạt Hình 3D Sub",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình Trung Quốc 3D Vietsub & Thuyết minh từ hoathinh3dsub.com với hàng trăm bộ phim hoạt hình 3D, 4K sắc nét",
+      "logo": "https://hoathinh3dsub.com/assets/images/logotot.png",
+      "base": "https://hoathinh3dsub.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://hoathinh3dsub.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "hoat-hinh-3d",
+          "type": "series",
+          "name": "Hoạt hình 3D",
+          "endpoint": "/3D?page={page}"
+        },
+        {
+          "id": "hoat-hinh-4k",
+          "type": "series",
+          "name": "Hoạt hình 4K",
+          "endpoint": "/4K?page={page}"
+        },
+        {
+          "id": "hoat-hinh-2d",
+          "type": "series",
+          "name": "Hoạt hình 2D",
+          "endpoint": "/2D?page={page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/3D?page={page}",
+          "item": "li.TPostMv, article.TPost",
+          "map": {
+            "id": "a @href",
+            "name": "h2.Title @text, a @title",
+            "poster": "img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.Title @text",
+            "poster": "img.attachment-img-mov-md @src, img @src",
+            "description": ".Description @text",
+            "videos": {
+              "servers": "h3.server-name @text",
+              "item": "ul.list-episode li a.btn-episode",
+              "map": {
+                "title": "@title, @text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.btn3dsv, a.btn-episode, iframe",
+            "attr": "href",
+            "label": "@text"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hhpanda",
+      "name": "HHPanda 4K",
+      "version": "1.0.1",
+      "description": "Kho Hoạt Hình 3D Trung Quốc từ HHPanda (hhpanda.st) chất lượng 4K siêu nét, tự động cập nhật tên miền mới qua hhpanda.me",
+      "logo": "https://hhpanda.st/wp-content/uploads/2024/10/logo.webp",
+      "base": "https://hhpanda.st",
+      "dynamicDomainUrl": "https://hhpanda.me/",
+      "dynamicDomainSelector": "a.cta-btn @href, #siteUrl @text",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://hhpanda.st/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/moi-cap-nhat/page/{page}"
+        },
+        {
+          "id": "most-viewed",
+          "type": "series",
+          "name": "Xem Nhiều Nhất",
+          "endpoint": "/most-viewed/page/{page}"
+        },
+        {
+          "id": "hoan-thanh",
+          "type": "series",
+          "name": "Đã Hoàn Thành",
+          "endpoint": "/hoan-thanh/page/{page}"
+        },
+        {
+          "id": "tu-tien",
+          "type": "series",
+          "name": "Tu Tiên",
+          "endpoint": "/the-loai/tu-tien/page/{page}"
+        },
+        {
+          "id": "kiem-hiep",
+          "type": "series",
+          "name": "Kiếm Hiệp",
+          "endpoint": "/the-loai/kiem-hiep/page/{page}"
+        },
+        {
+          "id": "co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/the-loai/co-trang/page/{page}"
+        },
+        {
+          "id": "huyen-huyen",
+          "type": "series",
+          "name": "Huyền Huyễn",
+          "endpoint": "/the-loai/huyen-huyen/page/{page}"
+        },
+        {
+          "id": "khoa-huyen",
+          "type": "series",
+          "name": "Khoa Huyễn",
+          "endpoint": "/the-loai/khoa-huyen/page/{page}"
+        },
+        {
+          "id": "ky-ao",
+          "type": "series",
+          "name": "Kỳ Ảo",
+          "endpoint": "/the-loai/ky-ao/page/{page}"
+        },
+        {
+          "id": "do-thi",
+          "type": "series",
+          "name": "Đô Thị",
+          "endpoint": "/the-loai/do-thi/page/{page}"
+        },
+        {
+          "id": "huyen-nghi",
+          "type": "series",
+          "name": "Huyền Nghi",
+          "endpoint": "/the-loai/huyen-nghi/page/{page}"
+        },
+        {
+          "id": "canh-ky",
+          "type": "series",
+          "name": "Cạnh Kỹ",
+          "endpoint": "/the-loai/canh-ky/page/{page}"
+        },
+        {
+          "id": "da-su",
+          "type": "series",
+          "name": "Dã Sử",
+          "endpoint": "/the-loai/da-su/page/{page}"
+        },
+        {
+          "id": "dong-nhan",
+          "type": "series",
+          "name": "Đồng Nhân",
+          "endpoint": "/the-loai/dong-nhan/page/{page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/page/{page}",
+          "item": "article.grid-item, .halim-item, article",
+          "map": {
+            "id": "a.halim-thumb @href",
+            "name": "a.halim-thumb @title, .entry-title @text, a.halim-thumb @text",
+            "poster": "img.film-poster-img @src, figure img @src, img @src, img @data-src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1 @text, h1.entry-title @text, .entry-title @text",
+            "poster": "figure img @src, .film-poster-img @src, img @src",
+            "description": ".entry-content @text",
+            "videos": {
+              "servers": "#halim-ajax-list-server .get-eps, span.halim-server-name, .btn3dsv",
+              "item": "li.halim-episode a, a.halim-btn, a[href*='watch-']",
+              "map": {
+                "title": "@title, span @text, @text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.halim-btn, a[href*='watch-'], iframe, .metaframe, .button-watch a",
+            "attr": "href, src",
+            "label": "@text, @title"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hh3d",
+      "name": "HH3D",
+      "version": "1.2.1",
+      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh chất lượng cao từ hh3d.com, phân tách server Vietsub/Thuyết minh thông minh và giải mã stream data-obf siêu tốc",
+      "logo": "https://www.hh3d.com/storage/files/hh3d_favicon.png",
+      "base": "https://www.hh3d.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Referer": "https://www.hh3d.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/danh-sach/moi-cap-nhat?page={page}"
+        },
+        {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/danh-sach/phim-bo?page={page}"
+        },
+        {
+          "id": "hoan-thanh",
+          "type": "series",
+          "name": "Đã Hoàn Thành",
+          "endpoint": "/danh-sach/hoan-thanh?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ | OVA",
+          "endpoint": "/danh-sach/phim-le?page={page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/danh-sach/moi-cap-nhat?page={page}",
+          "item": ".halim-item",
+          "map": {
+            "id": "a.halim-thumb @href",
+            "name": "a.halim-thumb @title, .entry-title @text",
+            "poster": ".halim-thumb img @data-src, .halim-thumb img @src, figure img @data-src, figure img @src, img.lazyload @data-src, img @data-src, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.entry-title @text, .entry-title @text",
+            "poster": ".movie-poster img @src, .movie-poster img @data-src, img.movie-thumb @src, .movie-thumb @data-src, img @src",
+            "description": ".entry-content @text",
+            "released": ".released @text",
+            "videos": {
+              "servers": "ul.nav-tabs li a",
+              "item": "li.halim-episode a, a.halim-btn, a",
+              "map": {
+                "title": "span @text, @title",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "span.streaming-server, .streaming-server, #player-wrapper iframe, iframe",
+            "attr": "data-link",
+            "label": "@text"
+          }
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [
+          "facebook.com",
+          "google.com"
+        ],
+        "bannedTerms": [
+          "quangcao",
+          "promo",
+          "intro"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt",
+          ".svg"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4",
+          "stream",
+          "video"
+        ]
+      },
+      "streamUnwrapping": [
+        "data-obf",
+        "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hoathinh3d",
+      "name": "HoatHinh3D",
+      "version": "1.1.0",
+      "description": "Kho Hoạt Hình 3D Trung Quốc từ hoathinh3d.pw với hàng trăm bộ phim hoạt hình 3D Vietsub mới nhất và giải mã Halim player",
+      "logo": "https://hoathinh3d.pw/wp-content/uploads/2021/03/logo1.png",
+      "base": "https://hoathinh3d.pw",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://hoathinh3d.pw/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/page/{page}"
+        },
+        {
+          "id": "phim-dang-chieu",
+          "type": "series",
+          "name": "Đang Chiếu",
+          "endpoint": "/phim-dang-chieu/page/{page}"
+        },
+        {
+          "id": "phim-hoan-thanh",
+          "type": "series",
+          "name": "Đã Hoàn Thành",
+          "endpoint": "/phim-hoan-thanh/page/{page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ | OVA",
+          "endpoint": "/phim-hoat-hinh-3d-le/page/{page}"
+        },
+        {
+          "id": "tien-hiep",
+          "type": "series",
+          "name": "Tiên Hiệp",
+          "endpoint": "/tien-hiep/page/{page}"
+        },
+        {
+          "id": "huyen-huyen",
+          "type": "series",
+          "name": "Huyền Huyễn",
+          "endpoint": "/huyen-huyen/page/{page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/page/{page}",
+          "item": ".halim-item",
+          "map": {
+            "id": "a.halim-thumb @href",
+            "name": "a.halim-thumb @title, .entry-title @text",
+            "poster": "figure img @src, figure img @data-src, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.entry-title @text, .entry-title @text",
+            "poster": ".movie-poster img @src, .movie-poster img @data-src, figure img @src, img @src",
+            "description": ".entry-content @text, #info-story @text",
+            "videos": {
+              "servers": "ul.nav-tabs li a, .nav-tabs li a",
+              "item": "li.halim-episode a, a.halim-btn",
+              "map": {
+                "title": "span @text, @title",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.halim-btn, .halim-episode a, iframe",
+            "attr": "href",
+            "label": "@text"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hhhtq",
+      "name": "HHHTQ.Team",
+      "version": "1.1.0",
+      "description": "Kho Hoạt Hình Trung Quốc Vietsub từ hhhtq.team với hàng ngàn tập phim đa dạng",
+      "logo": "https://hhhtq.team/photos.jpg",
+      "base": "https://hhhtq.team",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://hhhtq.team/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/?page={page}"
+        },
+        {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/the-loai/phim-bo/?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/the-loai/phim-le/?page={page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/?page={page}",
+          "item": ".myui-vodlist__box",
+          "map": {
+            "id": "a.myui-vodlist__thumb @href",
+            "name": "a.myui-vodlist__thumb @title, .myui-vodlist__detail h4 a @text",
+            "poster": "a.myui-vodlist__thumb @style, a.myui-vodlist__thumb @data-original, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.title @text, .myui-content__detail h1 @text",
+            "poster": ".myui-content__thumb img @data-original, .myui-content__thumb img @src, .myui-content__thumb a @style",
+            "description": ".myui-content__detail .desc @text, .sketch @text",
+            "videos": {
+              "servers": "ul.nav-tabs li a, .myui-panel_hd .nav li a",
+              "item": ".myui-content__list li a",
+              "map": {
+                "title": "b @text, @text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": ".myui-player__video iframe, iframe",
+            "attr": "src",
+            "label": "@title"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "kkphim",
+      "name": "KKPhim",
+      "version": "1.3.0",
+      "description": "Kho phim điện ảnh, phim bộ, hoạt hình từ PhimAPI (phimapi.com / kkphim.com) - Chuẩn mực 20 chuyên mục phong phú, poster điện ảnh 2:3 chuẩn sắc nét, direct HLS link_m3u8 siêu tốc",
+      "logo": "https://phimapi.com/favicon.ico",
       "base": "https://phimapi.com",
       "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         "Referer": "https://phimapi.com/"
       },
       "types": [
-        "movie",
-        "series"
+        "series",
+        "movie"
       ],
       "catalogs": [
         {
           "id": "phim-moi-cap-nhat",
-          "type": "movie",
+          "type": "series",
           "name": "Mới Cập Nhật",
-          "endpoint": "/danh-sach/phim-moi-cap-nhat?page={page}"
+          "endpoint": "/v1/api/danh-sach/phim-moi-cap-nhat?page={page}"
+        },
+        {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/v1/api/danh-sach/phim-bo?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/v1/api/danh-sach/phim-le?page={page}"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/v1/api/danh-sach/hoat-hinh?page={page}"
+        },
+        {
+          "id": "tv-shows",
+          "type": "series",
+          "name": "TV Shows",
+          "endpoint": "/v1/api/danh-sach/tv-shows?page={page}"
+        },
+        {
+          "id": "the-loai-hanh-dong",
+          "type": "movie",
+          "name": "Hành Động",
+          "endpoint": "/v1/api/the-loai/hanh-dong?page={page}"
+        },
+        {
+          "id": "the-loai-co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/v1/api/the-loai/co-trang?page={page}"
+        },
+        {
+          "id": "the-loai-tinh-cam",
+          "type": "series",
+          "name": "Tình Cảm",
+          "endpoint": "/v1/api/the-loai/tinh-cam?page={page}"
+        },
+        {
+          "id": "the-loai-tam-ly",
+          "type": "series",
+          "name": "Tâm Lý",
+          "endpoint": "/v1/api/the-loai/tam-ly?page={page}"
+        },
+        {
+          "id": "the-loai-hai-huoc",
+          "type": "movie",
+          "name": "Hài Hước",
+          "endpoint": "/v1/api/the-loai/hai-huoc?page={page}"
+        },
+        {
+          "id": "the-loai-kinh-di",
+          "type": "movie",
+          "name": "Kinh Dị",
+          "endpoint": "/v1/api/the-loai/kinh-di?page={page}"
+        },
+        {
+          "id": "the-loai-vien-tuong",
+          "type": "movie",
+          "name": "Viễn Tưởng",
+          "endpoint": "/v1/api/the-loai/vien-tuong?page={page}"
+        },
+        {
+          "id": "the-loai-hinh-su",
+          "type": "series",
+          "name": "Hình Sự",
+          "endpoint": "/v1/api/the-loai/hinh-su?page={page}"
+        },
+        {
+          "id": "the-loai-vo-thuat",
+          "type": "movie",
+          "name": "Võ Thuật",
+          "endpoint": "/v1/api/the-loai/vo-thuat?page={page}"
+        },
+        {
+          "id": "quoc-gia-han-quoc",
+          "type": "series",
+          "name": "Hàn Quốc",
+          "endpoint": "/v1/api/quoc-gia/han-quoc?page={page}"
+        },
+        {
+          "id": "quoc-gia-trung-quoc",
+          "type": "series",
+          "name": "Trung Quốc",
+          "endpoint": "/v1/api/quoc-gia/trung-quoc?page={page}"
+        },
+        {
+          "id": "quoc-gia-au-my",
+          "type": "movie",
+          "name": "Âu Mỹ",
+          "endpoint": "/v1/api/quoc-gia/au-my?page={page}"
+        },
+        {
+          "id": "quoc-gia-nhat-ban",
+          "type": "series",
+          "name": "Nhật Bản",
+          "endpoint": "/v1/api/quoc-gia/nhat-ban?page={page}"
+        },
+        {
+          "id": "quoc-gia-thai-lan",
+          "type": "series",
+          "name": "Thái Lan",
+          "endpoint": "/v1/api/quoc-gia/thai-lan?page={page}"
+        },
+        {
+          "id": "quoc-gia-viet-nam",
+          "type": "movie",
+          "name": "Việt Nam",
+          "endpoint": "/v1/api/quoc-gia/viet-nam?page={page}"
         }
       ],
       "json": {
         "list": {
-          "path": "/danh-sach/phim-moi-cap-nhat?page={page}",
-          "items": "items",
+          "path": "/v1/api/danh-sach/phim-moi-cap-nhat?page={page}",
+          "items": "data.items",
           "map": {
             "id": "slug",
             "name": "name",
-            "poster": "poster_url"
+            "poster": "poster_url",
+            "background": "thumb_url",
+            "description": "origin_name"
           }
         },
         "meta": {
@@ -157,6 +1207,7 @@
           "map": {
             "name": "movie.name",
             "poster": "movie.poster_url",
+            "background": "movie.thumb_url",
             "description": "movie.content",
             "episodes": "episodes"
           }
@@ -164,21 +1215,28 @@
         "streams": {
           "path": "/phim/{slug}",
           "regexes": [
-            "https?://[^\"'\\s]+\\.m3u8"
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
           ]
         }
       },
       "streamFilters": {
-        "blocklistHosts": [],
+        "blocklistHosts": [
+          "ads.example.com",
+          "doubleclick.net",
+          "googlesyndication.com"
+        ],
         "bannedTerms": [
           "quangcao",
-          "promo"
+          "promo",
+          "intro"
         ],
         "falseStreamExts": [
           ".jpg",
           ".png",
           ".webp",
-          ".vtt"
+          ".vtt",
+          ".svg"
         ],
         "allowedIndicators": [
           ".m3u8",
@@ -192,15 +1250,15 @@
     {
       "$schema": "zfim/addon-json/v1",
       "kind": "single",
-      "id": "hh3d",
-      "name": "HH3D.com",
-      "version": "1.0.0",
-      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub & Thuyết minh tổng hợp từ HH3D.com",
-      "logo": "https://www.hh3d.com/storage/files/hh3d_favicon.png",
-      "base": "https://www.hh3d.com",
+      "id": "vsmov",
+      "name": "VSMOV",
+      "version": "1.2.0",
+      "description": "Nguồn API phim miễn phí VSMOV (vsmov.com) - Đầy đủ 13 chuyên mục, phim lẻ, phim bộ, hoạt hình, quốc gia, giải mã direct signed HLS stream siêu mượt",
+      "logo": "https://vsmov.com/favicon-vsm.png",
+      "base": "https://vsmov.com",
       "headers": {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": "https://www.hh3d.com/"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Referer": "https://vsmov.com/"
       },
       "types": [
         "series",
@@ -208,75 +1266,131 @@
       ],
       "catalogs": [
         {
-          "id": "tien-hiep",
+          "id": "phim-moi-cap-nhat",
           "type": "series",
-          "name": "Tiên Hiệp",
-          "endpoint": "/the-loai/tien-hiep?page={page}"
+          "name": "Mới Cập Nhật",
+          "endpoint": "/api/danh-sach/phim-moi-cap-nhat?page={page}"
         },
         {
-          "id": "huyen-huyen",
+          "id": "phim-bo",
           "type": "series",
-          "name": "Huyền Huyễn",
-          "endpoint": "/the-loai/huyen-huyen?page={page}"
-        },
-        {
-          "id": "phieu-luu",
-          "type": "series",
-          "name": "Phiêu Lưu",
-          "endpoint": "/the-loai/phieu-luu?page={page}"
+          "name": "Phim Bộ",
+          "endpoint": "/api/danh-sach/phim-bo?page={page}"
         },
         {
           "id": "phim-le",
           "type": "movie",
           "name": "Phim Lẻ",
-          "endpoint": "/danh-sach/phim-le?page={page}"
+          "endpoint": "/api/danh-sach/phim-le?page={page}"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/api/the-loai/hoat-hinh?page={page}"
+        },
+        {
+          "id": "subteam",
+          "type": "series",
+          "name": "Phim Subteam",
+          "endpoint": "/api/danh-sach/subteam?page={page}"
+        },
+        {
+          "id": "han-quoc",
+          "type": "series",
+          "name": "Phim Hàn Quốc",
+          "endpoint": "/api/quoc-gia/han-quoc?page={page}"
+        },
+        {
+          "id": "trung-quoc",
+          "type": "series",
+          "name": "Phim Trung Quốc",
+          "endpoint": "/api/quoc-gia/trung-quoc?page={page}"
+        },
+        {
+          "id": "au-my",
+          "type": "movie",
+          "name": "Phim Âu Mỹ",
+          "endpoint": "/api/quoc-gia/au-my?page={page}"
+        },
+        {
+          "id": "hanh-dong",
+          "type": "movie",
+          "name": "Hành Động",
+          "endpoint": "/api/the-loai/hanh-dong?page={page}"
+        },
+        {
+          "id": "co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/api/the-loai/co-trang?page={page}"
+        },
+        {
+          "id": "lang-man",
+          "type": "series",
+          "name": "Lãng Mạn",
+          "endpoint": "/api/the-loai/lang-man?page={page}"
+        },
+        {
+          "id": "khoa-hoc-vien-tuong",
+          "type": "movie",
+          "name": "Khoa Học Viễn Tưởng",
+          "endpoint": "/api/the-loai/khoa-hoc-vien-tuong?page={page}"
+        },
+        {
+          "id": "kinh-di",
+          "type": "movie",
+          "name": "Kinh Dị",
+          "endpoint": "/api/the-loai/kinh-di?page={page}"
         }
       ],
-      "scrape": {
+      "json": {
         "list": {
-          "endpoint": "/the-loai/tien-hiep?page={page}",
-          "item": ".halim-item",
+          "path": "/api/danh-sach/phim-moi-cap-nhat?page={page}",
+          "items": "items",
           "map": {
-            "id": "a.halim-thumb @href",
-            "name": "a.halim-thumb @title",
-            "poster": "img @data-src"
+            "id": "slug",
+            "name": "name",
+            "poster": "thumb_url",
+            "background": "poster_url",
+            "description": "origin_name"
           }
         },
         "meta": {
-          "endpoint": "/{slug}",
+          "path": "/api/phim/{slug}",
           "map": {
-            "name": "h1.entry-title @text",
-            "poster": "img.movie-thumb @data-src",
-            "description": ".entry-content @text",
-            "videos": {
-              "item": ".halim-episode a",
-              "map": {
-                "title": "@title",
-                "id": "@href"
-              }
-            }
+            "name": "movie.name",
+            "poster": "movie.thumb_url",
+            "background": "movie.poster_url",
+            "description": "movie.content",
+            "episodes": "episodes"
           }
         },
         "streams": {
-          "endpoint": "{episodeId}",
-          "candidates": {
-            "selector": "span.streaming-server, .streaming-server",
-            "attr": "data-link",
-            "label": "@text"
-          }
+          "path": "/api/phim/{slug}",
+          "regexes": [
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+          ]
         }
       },
       "streamFilters": {
-        "blocklistHosts": [],
+        "blocklistHosts": [
+          "ads.example.com",
+          "doubleclick.net",
+          "googlesyndication.com"
+        ],
         "bannedTerms": [
           "quangcao",
-          "promo"
+          "promo",
+          "intro"
         ],
         "falseStreamExts": [
           ".jpg",
           ".png",
           ".webp",
-          ".vtt"
+          ".vtt",
+          ".svg"
         ],
         "allowedIndicators": [
           ".m3u8",
@@ -284,8 +1398,475 @@
         ]
       },
       "streamUnwrapping": [
-        "data-obf",
         "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "nguonphime",
+      "name": "Phim E",
+      "version": "1.0.0",
+      "description": "Kho nguồn phim Phim E (nguonphime.site) - API RESTful cập nhật liên tục với luồng HLS trực tiếp và kho phim Thuyết Minh chất lượng",
+      "logo": "https://nguonphime.site/favicon.ico",
+      "base": "https://nguonphime.site",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Referer": "https://nguonphime.site/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "phim-moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/api/films/phim-moi-cap-nhat?page={page}"
+        },
+        {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/api/films/danh-sach/phim-bo?page={page}"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/api/films/danh-sach/phim-le?page={page}"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/api/films/the-loai/hoat-hinh?page={page}"
+        }
+      ],
+      "json": {
+        "list": {
+          "path": "/api/films/phim-moi-cap-nhat?page={page}",
+          "items": "items",
+          "map": {
+            "id": "slug",
+            "name": "name",
+            "poster": "thumb_url",
+            "background": "poster_url",
+            "description": "description"
+          }
+        },
+        "meta": {
+          "path": "/api/film/{slug}",
+          "map": {
+            "name": "movie.name",
+            "poster": "movie.thumb_url",
+            "background": "movie.poster_url",
+            "description": "movie.description",
+            "episodes": "movie.episodes"
+          }
+        },
+        "streams": {
+          "path": "/api/film/{slug}",
+          "regexes": [
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+          ]
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [
+          "ads.example.com",
+          "doubleclick.net",
+          "googlesyndication.com"
+        ],
+        "bannedTerms": [
+          "quangcao",
+          "promo",
+          "intro"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt",
+          ".svg"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4"
+        ]
+      },
+      "streamUnwrapping": [
+        "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "cobephim",
+      "name": "CôBe Phim",
+      "version": "1.2.0",
+      "description": "CôBe Phim / RoPhim (cobephim.fun) - Kho phim HD Vietsub, Thuyết minh chất lượng cao với API backend trực tiếp, 17 chuyên mục phân loại đầy đủ, poster điện ảnh chuẩn 2:3, giải mã StreamC & HLS siêu nhanh",
+      "logo": "https://cobephim.fun/favicon.ico",
+      "base": "https://egluy2hhb21vaw5ndw9pbmhl.darkbytes.xyz",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Referer": "https://cobephim.fun/",
+        "Origin": "https://cobephim.fun"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "phim-moi",
+          "type": "series",
+          "name": "Phim Mới",
+          "endpoint": "/api/v1/movies/search?keyword=&page={page}&limit=24"
+        },
+        {
+          "id": "phim-bo",
+          "type": "series",
+          "name": "Phim Bộ",
+          "endpoint": "/api/v1/movies/search?keyword=&type=series&page={page}&limit=24"
+        },
+        {
+          "id": "phim-le",
+          "type": "movie",
+          "name": "Phim Lẻ",
+          "endpoint": "/api/v1/movies/search?keyword=&type=movie&page={page}&limit=24"
+        },
+        {
+          "id": "thinh-hanh",
+          "type": "series",
+          "name": "Thịnh Hành",
+          "endpoint": "/api/v1/movies/hot"
+        },
+        {
+          "id": "hanh-dong",
+          "type": "movie",
+          "name": "Hành Động",
+          "endpoint": "/api/v1/movies/by-category/hanh-dong?page={page}&limit=24"
+        },
+        {
+          "id": "co-trang",
+          "type": "series",
+          "name": "Cổ Trang",
+          "endpoint": "/api/v1/movies/by-category/co-trang?page={page}&limit=24"
+        },
+        {
+          "id": "tinh-cam",
+          "type": "series",
+          "name": "Tình Cảm",
+          "endpoint": "/api/v1/movies/by-category/tinh-cam?page={page}&limit=24"
+        },
+        {
+          "id": "hai-huoc",
+          "type": "movie",
+          "name": "Hài Hước",
+          "endpoint": "/api/v1/movies/by-category/hai-huoc?page={page}&limit=24"
+        },
+        {
+          "id": "hinh-su",
+          "type": "series",
+          "name": "Hình Sự",
+          "endpoint": "/api/v1/movies/by-category/hinh-su?page={page}&limit=24"
+        },
+        {
+          "id": "kinh-di",
+          "type": "movie",
+          "name": "Kinh Dị",
+          "endpoint": "/api/v1/movies/by-category/kinh-di?page={page}&limit=24"
+        },
+        {
+          "id": "vo-thuat",
+          "type": "movie",
+          "name": "Võ Thuật",
+          "endpoint": "/api/v1/movies/by-category/vo-thuat?page={page}&limit=24"
+        },
+        {
+          "id": "gia-dinh",
+          "type": "series",
+          "name": "Gia Đình",
+          "endpoint": "/api/v1/movies/by-category/gia-dinh?page={page}&limit=24"
+        },
+        {
+          "id": "short-drama",
+          "type": "series",
+          "name": "Short Drama",
+          "endpoint": "/api/v1/movies/by-category/short-drama?page={page}&limit=24"
+        },
+        {
+          "id": "tai-lieu",
+          "type": "movie",
+          "name": "Tài Liệu",
+          "endpoint": "/api/v1/movies/by-category/tai-lieu?page={page}&limit=24"
+        },
+        {
+          "id": "hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình",
+          "endpoint": "/api/v1/movies/search?keyword=hoat+hinh&page={page}&limit=24"
+        },
+        {
+          "id": "phim-han-quoc",
+          "type": "series",
+          "name": "Phim Hàn Quốc",
+          "endpoint": "/api/v1/movies/search?keyword=han+quoc&page={page}&limit=24"
+        },
+        {
+          "id": "phim-trung-quoc",
+          "type": "series",
+          "name": "Phim Trung Quốc",
+          "endpoint": "/api/v1/movies/search?keyword=trung+quoc&page={page}&limit=24"
+        }
+      ],
+      "json": {
+        "list": {
+          "path": "/api/v1/movies/search?keyword=&page={page}&limit=24",
+          "items": "result",
+          "map": {
+            "id": "slug",
+            "name": "name",
+            "poster": "thumbnail",
+            "background": "poster",
+            "description": "description"
+          }
+        },
+        "meta": {
+          "path": "/api/v1/movies/by-slug/{slug}",
+          "map": {
+            "name": "movie.name",
+            "poster": "movie.thumbnail",
+            "background": "movie.poster",
+            "description": "movie.description",
+            "episodes": "movie.episodes"
+          }
+        },
+        "streams": {
+          "path": "/embed/{episode}",
+          "regexes": [
+            "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+            "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+          ]
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [
+          "ads.example.com",
+          "doubleclick.net",
+          "googlesyndication.com"
+        ],
+        "bannedTerms": [
+          "quangcao",
+          "promo",
+          "intro"
+        ],
+        "falseStreamExts": [
+          ".jpg",
+          ".png",
+          ".webp",
+          ".vtt",
+          ".svg"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4"
+        ]
+      },
+      "streamUnwrapping": [
+        "direct-m3u8"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "vietngatv",
+      "name": "Việt Nga TV",
+      "version": "1.0.0",
+      "description": "Kho truyền hình trực tiếp Việt Nga TV - Đầy đủ các kênh VTV, VTVcab, HTV, Thể Thao, Phim Truyện, Giải Trí, Thiếu Nhi và các đài địa phương chuẩn nét",
+      "logo": "https://i.postimg.cc/k2RqCj0D/VTV.png",
+      "base": "https://vietngatv.short.gy",
+      "headers": {
+        "User-Agent": "Dalvik/2.1.0"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "m3u": {
+        "url": "https://vietngatv.short.gy/vietngatv",
+        "cacheMinutes": 60,
+        "defaultHeaders": {
+          "User-Agent": "Dalvik/2.1.0"
+        }
+      },
+      "catalogs": [
+        {
+          "id": "kenh-vtv",
+          "type": "series",
+          "name": "Kênh VTV"
+        },
+        {
+          "id": "kenh-vtvcab",
+          "type": "series",
+          "name": "Kênh VTVcab"
+        },
+        {
+          "id": "kenh-htv",
+          "type": "series",
+          "name": "Kênh HTV"
+        },
+        {
+          "id": "kenh-htvc",
+          "type": "series",
+          "name": "Kênh HTVC"
+        },
+        {
+          "id": "kenh-the-thao",
+          "type": "series",
+          "name": "Kênh Thể Thao"
+        },
+        {
+          "id": "kenh-phim-truyen",
+          "type": "series",
+          "name": "Kênh Phim Truyện"
+        },
+        {
+          "id": "kenh-giai-tri",
+          "type": "series",
+          "name": "Kênh Giải Trí"
+        },
+        {
+          "id": "kenh-thiet-yeu",
+          "type": "series",
+          "name": "Kênh Thiết Yếu"
+        },
+        {
+          "id": "kenh-thieu-nhi",
+          "type": "series",
+          "name": "Kênh Thiếu Nhi"
+        },
+        {
+          "id": "kenh-dac-sac",
+          "type": "series",
+          "name": "Kênh Đặc Sắc"
+        },
+        {
+          "id": "kenh-tin-tuc",
+          "type": "series",
+          "name": "Kênh Tin Tức"
+        },
+        {
+          "id": "kenh-trong-nuoc-dia-phuong",
+          "type": "series",
+          "name": "Kênh Địa Phương"
+        },
+        {
+          "id": "kenh-ca-nhac",
+          "type": "series",
+          "name": "Kênh Ca Nhạc"
+        },
+        {
+          "id": "kenh-tong-hop-nuoc-ngoai",
+          "type": "series",
+          "name": "Kênh Nước Ngoài"
+        },
+        {
+          "id": "kenh-vov",
+          "type": "series",
+          "name": "Kênh VOV"
+        },
+        {
+          "id": "kenh-radio-trong-nuoc",
+          "type": "series",
+          "name": "Kênh Radio"
+        }
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "thtt_sports",
+      "name": "Thể Thao Trực Tiếp",
+      "version": "1.0.0",
+      "description": "Kênh phát sóng trực tiếp các trận đấu thể thao & bóng đá chuyên nghiệp: Xôi Lạc, Cola TV, Khô Gà, Vua Sân Cỏ, Sút Bóng (thtt.pages.dev)",
+      "logo": "https://cdn-icons-png.flaticon.com/512/861/861512.png",
+      "base": "https://thtt.pages.dev",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "m3u": {
+        "url": "https://thtt.pages.dev/tttt.m3u",
+        "cacheMinutes": 15
+      },
+      "catalogs": [
+        {
+          "id": "tat-ca",
+          "type": "series",
+          "name": "Tất Cả Trận Đấu"
+        },
+        {
+          "id": "kho-ga-tv",
+          "type": "series",
+          "name": "Khô Gà TV"
+        },
+        {
+          "id": "s8-tv",
+          "type": "series",
+          "name": "S8 TV"
+        },
+        {
+          "id": "ga-vang-24h-tv",
+          "type": "series",
+          "name": "Gà Vàng 24h TV"
+        },
+        {
+          "id": "cola-tv",
+          "type": "series",
+          "name": "Cola TV"
+        },
+        {
+          "id": "xoi-lac-z-tv",
+          "type": "series",
+          "name": "Xôi Lạc Z TV"
+        },
+        {
+          "id": "ga-vang-33-tv",
+          "type": "series",
+          "name": "Gà Vàng 33 TV"
+        },
+        {
+          "id": "sao-ke-tv",
+          "type": "series",
+          "name": "Sao Kê TV"
+        },
+        {
+          "id": "chuoi-chien-tv",
+          "type": "series",
+          "name": "Chuối Chiên TV"
+        },
+        {
+          "id": "gio-vang-tv",
+          "type": "series",
+          "name": "Giờ Vàng TV"
+        },
+        {
+          "id": "bia-om-tv",
+          "type": "series",
+          "name": "Bia Ôm TV"
+        },
+        {
+          "id": "pha-lang-tv",
+          "type": "series",
+          "name": "Phá Làng TV"
+        }
       ]
     }
   ]
