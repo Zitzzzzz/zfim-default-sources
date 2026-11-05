@@ -4,7 +4,7 @@
   "id": "zFim01",
   "name": "zFim01",
   "description": "Kho nguồn phim và truyền hình tổng hợp cao cấp zFim01 cho app zFim. Tích hợp đầy đủ: NguonC, YanHH3D, KKPhim, VSMOV, Phim E, CôBe Phim, Việt Nga TV, Thể Thao Trực Tiếp.",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
@@ -201,8 +201,8 @@
       "kind": "single",
       "id": "yanhh3d",
       "name": "YanHH3D",
-      "version": "1.0.3",
-      "description": "Hoạt hình Trung Quốc 3D thuyết minh và vietsub từ yanhh3d.de (tự động cập nhật tên miền mới qua bit.ly/yanhh3d)",
+      "version": "1.0.4",
+      "description": "Hoạt hình Trung Quốc 3D thuyết minh và vietsub từ yanhh3d.de (tự động bóc tách stream pU/sU & đồng bộ domain mới qua bit.ly/yanhh3d)",
       "logo": "https://yanhh3d.de/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
       "base": "https://yanhh3d.de",
       "dynamicDomainUrl": "https://bit.ly/yanhh3d",
