@@ -1,0 +1,91 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "yanhh",
+  "name": "YanHH",
+  "version": "1.0.0",
+  "description": "Kho Hoạt Hình 3D Trung Quốc từ yanhh.com với hệ thống giải mã XOR stream HLS m3u8 siêu tốc",
+  "logo": "https://yanhh.com/wp-content/uploads/2026/07/cropped-fav-yanhh-192x192.png",
+  "base": "https://yanhh.com",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Referer": "https://yanhh.com/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/page/{page}/"
+    },
+    {
+      "id": "tien-hiep",
+      "type": "series",
+      "name": "Tiên Hiệp",
+      "endpoint": "/the-loai/tien-hiep/page/{page}/"
+    },
+    {
+      "id": "huyen-huyen",
+      "type": "series",
+      "name": "Huyền Huyễn",
+      "endpoint": "/the-loai/huyen-huyen/page/{page}/"
+    },
+    {
+      "id": "trung-sinh",
+      "type": "series",
+      "name": "Trùng Sinh",
+      "endpoint": "/the-loai/trung-sinh/page/{page}/"
+    },
+    {
+      "id": "kiem-hiep",
+      "type": "series",
+      "name": "Kiếm Hiệp",
+      "endpoint": "/the-loai/kiem-hiep/page/{page}/"
+    },
+    {
+      "id": "xuyen-khong",
+      "type": "series",
+      "name": "Xuyên Không",
+      "endpoint": "/the-loai/xuyen-khong/page/{page}/"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/page/{page}/",
+      "item": ".movie-item-4, article.movie-item, .item-movie",
+      "map": {
+        "id": "a @href",
+        "name": ".movie-title-horizontal a @text, .movie-title a @text, h3 a @text, a @title",
+        "poster": "img @data-src, img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}/",
+      "map": {
+        "name": "h1 @text, .movie-title @text",
+        "poster": "img.movie-poster @data-src, img.movie-poster @src, img @data-src, img @src",
+        "description": ".movie-description @text, .movie-content @text, .entry-content @text",
+        "videos": {
+          "servers": ".server-item @text, .episodes-title @text",
+          "item": ".episodes-grid a.episode-item, a.episode-item",
+          "map": {
+            "title": "@text",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": ".stream-video-section, #video-player-m3u8, a.episode-item, iframe",
+        "attr": "href",
+        "label": "@text"
+      }
+    }
+  }
+}

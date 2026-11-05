@@ -3,8 +3,8 @@
   "kind": "collection",
   "id": "zFim01",
   "name": "zFim01",
-  "description": "Kho nguồn phim và truyền hình tổng hợp cao cấp zFim01 cho app zFim. Tích hợp đầy đủ: NguonC, YanHH3D, HH3D, HoatHinh3D, HHHTQ, KKPhim, VSMOV, Phim E, CôBe Phim, Việt Nga TV, Thể Thao Trực Tiếp.",
-  "version": "1.4.7",
+  "description": "Kho nguồn phim và truyền hình tổng hợp cao cấp zFim01 cho app zFim. Tích hợp đầy đủ: NguonC, YanHH3D, HHPanda, HoatHinh3DSub, YanHH, HH3D, HoatHinh3D, HHHTQ, KKPhim, VSMOV, Phim E, CôBe Phim, Việt Nga TV, Thể Thao Trực Tiếp.",
+  "version": "1.4.8",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
@@ -201,14 +201,14 @@
       "kind": "single",
       "id": "yanhh3d",
       "name": "YanHH3D 4K",
-      "version": "1.0.5",
-      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh từ yanhh3d.de (tự động phân tách server Thuyết Minh & Vietsub, giải mã stream pU/sU)",
-      "logo": "https://yanhh3d.de/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
-      "base": "https://yanhh3d.de",
+      "version": "1.0.6",
+      "description": "Kho Hoạt Hình 3D Trung Quốc Vietsub / Thuyết minh từ yanhh3d.ee (tự động phân tách server Thuyết Minh & Vietsub, giải mã stream pU/sU)",
+      "logo": "https://yanhh3d.ee/storage/settings/August2024/YOoAwtlobLbwKhiFwRZv.png",
+      "base": "https://yanhh3d.ee",
       "dynamicDomainUrl": "https://bit.ly/yanhh3d",
       "headers": {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Referer": "https://yanhh3d.de/"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://yanhh3d.ee/"
       },
       "types": [
         "series",
@@ -380,6 +380,245 @@
       "streamUnwrapping": [
         "direct-m3u8"
       ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "yanhh",
+      "name": "YanHH",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình 3D Trung Quốc từ yanhh.com với hệ thống giải mã XOR stream HLS m3u8 siêu tốc",
+      "logo": "https://yanhh.com/wp-content/uploads/2026/07/cropped-fav-yanhh-192x192.png",
+      "base": "https://yanhh.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://yanhh.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/page/{page}/"
+        },
+        {
+          "id": "tien-hiep",
+          "type": "series",
+          "name": "Tiên Hiệp",
+          "endpoint": "/the-loai/tien-hiep/page/{page}/"
+        },
+        {
+          "id": "huyen-huyen",
+          "type": "series",
+          "name": "Huyền Huyễn",
+          "endpoint": "/the-loai/huyen-huyen/page/{page}/"
+        },
+        {
+          "id": "trung-sinh",
+          "type": "series",
+          "name": "Trùng Sinh",
+          "endpoint": "/the-loai/trung-sinh/page/{page}/"
+        },
+        {
+          "id": "kiem-hiep",
+          "type": "series",
+          "name": "Kiếm Hiệp",
+          "endpoint": "/the-loai/kiem-hiep/page/{page}/"
+        },
+        {
+          "id": "xuyen-khong",
+          "type": "series",
+          "name": "Xuyên Không",
+          "endpoint": "/the-loai/xuyen-khong/page/{page}/"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/page/{page}/",
+          "item": ".movie-item-4, article.movie-item, .item-movie",
+          "map": {
+            "id": "a @href",
+            "name": ".movie-title-horizontal a @text, .movie-title a @text, h3 a @text, a @title",
+            "poster": "img @data-src, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}/",
+          "map": {
+            "name": "h1 @text, .movie-title @text",
+            "poster": "img.movie-poster @data-src, img.movie-poster @src, img @data-src, img @src",
+            "description": ".movie-description @text, .movie-content @text, .entry-content @text",
+            "videos": {
+              "servers": ".server-item @text, .episodes-title @text",
+              "item": ".episodes-grid a.episode-item, a.episode-item",
+              "map": {
+                "title": "@text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": ".stream-video-section, #video-player-m3u8, a.episode-item, iframe",
+            "attr": "href",
+            "label": "@text"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hoathinh3dsub",
+      "name": "Hoạt Hình 3D Sub",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình Trung Quốc 3D Vietsub & Thuyết minh từ hoathinh3dsub.com với hàng trăm bộ phim hoạt hình 3D, 4K sắc nét",
+      "logo": "https://hoathinh3dsub.com/assets/images/logotot.png",
+      "base": "https://hoathinh3dsub.com",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://hoathinh3dsub.com/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "hoat-hinh-3d",
+          "type": "series",
+          "name": "Hoạt hình 3D",
+          "endpoint": "/3D?page={page}"
+        },
+        {
+          "id": "hoat-hinh-4k",
+          "type": "series",
+          "name": "Hoạt hình 4K",
+          "endpoint": "/4K?page={page}"
+        },
+        {
+          "id": "hoat-hinh-2d",
+          "type": "series",
+          "name": "Hoạt hình 2D",
+          "endpoint": "/2D?page={page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/3D?page={page}",
+          "item": "li.TPostMv, article.TPost",
+          "map": {
+            "id": "a @href",
+            "name": "h2.Title @text, a @title",
+            "poster": "img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.Title @text",
+            "poster": "img.attachment-img-mov-md @src, img @src",
+            "description": ".Description @text",
+            "videos": {
+              "servers": "h3.server-name @text",
+              "item": "ul.list-episode li a.btn-episode",
+              "map": {
+                "title": "@title, @text",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.btn3dsv, a.btn-episode, iframe",
+            "attr": "href",
+            "label": "@text"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "hhpanda",
+      "name": "HHPanda 4K",
+      "version": "1.0.0",
+      "description": "Kho Hoạt Hình 3D Trung Quốc từ HHPanda (hhpanda.st) chất lượng 4K siêu nét, tự động cập nhật tên miền mới qua hhpanda.me",
+      "logo": "https://hhpanda.st/wp-content/uploads/2024/10/logo.webp",
+      "base": "https://hhpanda.st",
+      "dynamicDomainUrl": "https://hhpanda.me/",
+      "dynamicDomainSelector": "a.cta-btn @href, #siteUrl @text",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Referer": "https://hhpanda.st/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "moi-cap-nhat",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/moi-cap-nhat/page/{page}"
+        },
+        {
+          "id": "hoan-thanh",
+          "type": "series",
+          "name": "Đã Hoàn Thành",
+          "endpoint": "/hoan-thanh/page/{page}"
+        },
+        {
+          "id": "most-viewed",
+          "type": "series",
+          "name": "Xem Nhiều",
+          "endpoint": "/most-viewed/page/{page}"
+        }
+      ],
+      "scrape": {
+        "list": {
+          "endpoint": "/page/{page}",
+          "item": ".halim-item",
+          "map": {
+            "id": "a.halim-thumb @href",
+            "name": "a.halim-thumb @title, .entry-title @text",
+            "poster": "figure img @src, figure img @data-src, img @src"
+          }
+        },
+        "meta": {
+          "endpoint": "/{slug}",
+          "map": {
+            "name": "h1.entry-title @text, .entry-title @text",
+            "poster": ".movie-poster img @src, figure img @src, img @src",
+            "description": ".entry-content @text",
+            "videos": {
+              "servers": "span.halim-server-name",
+              "item": "li.halim-episode a, a.halim-btn",
+              "map": {
+                "title": "span @text, @title",
+                "id": "@href"
+              }
+            }
+          }
+        },
+        "streams": {
+          "endpoint": "/{slug}",
+          "candidates": {
+            "selector": "a.halim-btn, a[href*='watch-'], iframe, .button-watch a",
+            "attr": "href",
+            "label": "@text"
+          }
+        }
+      }
     },
     {
       "$schema": "zfim/addon-json/v1",

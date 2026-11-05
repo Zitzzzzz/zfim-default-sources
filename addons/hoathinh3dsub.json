@@ -1,0 +1,73 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "hoathinh3dsub",
+  "name": "Hoạt Hình 3D Sub",
+  "version": "1.0.0",
+  "description": "Kho Hoạt Hình Trung Quốc 3D Vietsub & Thuyết minh từ hoathinh3dsub.com với hàng trăm bộ phim hoạt hình 3D, 4K sắc nét",
+  "logo": "https://hoathinh3dsub.com/assets/images/logotot.png",
+  "base": "https://hoathinh3dsub.com",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Referer": "https://hoathinh3dsub.com/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "hoat-hinh-3d",
+      "type": "series",
+      "name": "Hoạt hình 3D",
+      "endpoint": "/3D?page={page}"
+    },
+    {
+      "id": "hoat-hinh-4k",
+      "type": "series",
+      "name": "Hoạt hình 4K",
+      "endpoint": "/4K?page={page}"
+    },
+    {
+      "id": "hoat-hinh-2d",
+      "type": "series",
+      "name": "Hoạt hình 2D",
+      "endpoint": "/2D?page={page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/3D?page={page}",
+      "item": "li.TPostMv, article.TPost",
+      "map": {
+        "id": "a @href",
+        "name": "h2.Title @text, a @title",
+        "poster": "img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1.Title @text",
+        "poster": "img.attachment-img-mov-md @src, img @src",
+        "description": ".Description @text",
+        "videos": {
+          "servers": "h3.server-name @text",
+          "item": "ul.list-episode li a.btn-episode",
+          "map": {
+            "title": "@title, @text",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "a.btn3dsv, a.btn-episode, iframe",
+        "attr": "href",
+        "label": "@text"
+      }
+    }
+  }
+}

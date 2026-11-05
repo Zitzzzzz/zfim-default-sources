@@ -1,0 +1,75 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "hhpanda",
+  "name": "HHPanda 4K",
+  "version": "1.0.0",
+  "description": "Kho Hoạt Hình 3D Trung Quốc từ HHPanda (hhpanda.st) chất lượng 4K siêu nét, tự động cập nhật tên miền mới qua hhpanda.me",
+  "logo": "https://hhpanda.st/wp-content/uploads/2024/10/logo.webp",
+  "base": "https://hhpanda.st",
+  "dynamicDomainUrl": "https://hhpanda.me/",
+  "dynamicDomainSelector": "a.cta-btn @href, #siteUrl @text",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Referer": "https://hhpanda.st/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/moi-cap-nhat/page/{page}"
+    },
+    {
+      "id": "hoan-thanh",
+      "type": "series",
+      "name": "Đã Hoàn Thành",
+      "endpoint": "/hoan-thanh/page/{page}"
+    },
+    {
+      "id": "most-viewed",
+      "type": "series",
+      "name": "Xem Nhiều",
+      "endpoint": "/most-viewed/page/{page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/page/{page}",
+      "item": ".halim-item",
+      "map": {
+        "id": "a.halim-thumb @href",
+        "name": "a.halim-thumb @title, .entry-title @text",
+        "poster": "figure img @src, figure img @data-src, img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1.entry-title @text, .entry-title @text",
+        "poster": ".movie-poster img @src, figure img @src, img @src",
+        "description": ".entry-content @text",
+        "videos": {
+          "servers": "span.halim-server-name",
+          "item": "li.halim-episode a, a.halim-btn",
+          "map": {
+            "title": "span @text, @title",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "a.halim-btn, a[href*='watch-'], iframe, .button-watch a",
+        "attr": "href",
+        "label": "@text"
+      }
+    }
+  }
+}
