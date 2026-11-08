@@ -1,0 +1,223 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "xiaofilm",
+  "name": "XiaoPhim",
+  "version": "1.0.0",
+  "description": "Kho phim XiaoPhim (xiaofilm.online) - Xem phim HD Online Vietsub/Thuyết minh tốc độ cao, tuyển chọn Phim Chiếu Rạp, Phim Bộ, Phim Lẻ, Anime, Vũ trụ Marvel, Phim 4K chất lượng đỉnh cao",
+  "logo": "https://xiaofilm.online/images/icon-192x192.png",
+  "base": "https://xiaofilm.online",
+  "dynamicDomainUrl": "https://api1.xiaofilm.workers.dev/config.json",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://xiaofilm.online/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "phim-moi",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/xiaophim"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ",
+      "endpoint": "/phim-bo?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ",
+      "endpoint": "/phim-le?page={page}"
+    },
+    {
+      "id": "phim-4k",
+      "type": "movie",
+      "name": "Phim 4K Ultra HD",
+      "endpoint": "/c/4k.4k?page={page}"
+    },
+    {
+      "id": "anime",
+      "type": "series",
+      "name": "Anime Vietsub",
+      "endpoint": "/c/anime.anime?page={page}"
+    },
+    {
+      "id": "marvel",
+      "type": "movie",
+      "name": "Vũ Trụ Marvel",
+      "endpoint": "/c/marvel.marvel?page={page}"
+    },
+    {
+      "id": "the-gioi-phep-thuat",
+      "type": "movie",
+      "name": "Thế Giới Phép Thuật",
+      "endpoint": "/c/the-gioi-phep-thuat.the-gioi-phep-thuat?page={page}"
+    },
+    {
+      "id": "chau-tinh-tri",
+      "type": "movie",
+      "name": "Châu Tinh Trì",
+      "endpoint": "/c/chau-tinh-tri.chau-tinh-tri?page={page}"
+    },
+    {
+      "id": "top-tmdb",
+      "type": "movie",
+      "name": "Top TMDB Điểm Cao",
+      "endpoint": "/c/top-tmdb.top-tmdb?page={page}"
+    },
+    {
+      "id": "the-loai-chieu-rap",
+      "type": "movie",
+      "name": "Phim Chiếu Rạp",
+      "endpoint": "/the-loai/chieu-rap.chieu-rap?page={page}"
+    },
+    {
+      "id": "the-loai-hanh-dong",
+      "type": "movie",
+      "name": "Hành Động",
+      "endpoint": "/the-loai/hanh-dong.hanh-dong?page={page}"
+    },
+    {
+      "id": "the-loai-tam-ly",
+      "type": "series",
+      "name": "Tâm Lý",
+      "endpoint": "/the-loai/tam-ly.tam-ly?page={page}"
+    },
+    {
+      "id": "the-loai-vien-tuong",
+      "type": "movie",
+      "name": "Viễn Tưởng",
+      "endpoint": "/the-loai/vien-tuong.vien-tuong?page={page}"
+    },
+    {
+      "id": "the-loai-hai",
+      "type": "movie",
+      "name": "Hài Hước",
+      "endpoint": "/the-loai/hai.hai?page={page}"
+    },
+    {
+      "id": "the-loai-phieu-luu",
+      "type": "movie",
+      "name": "Phiêu Lưu",
+      "endpoint": "/the-loai/phieu-luu.phieu-luu?page={page}"
+    },
+    {
+      "id": "the-loai-hinh-su",
+      "type": "series",
+      "name": "Hình Sự",
+      "endpoint": "/the-loai/hinh-su.hinh-su?page={page}"
+    },
+    {
+      "id": "the-loai-bi-an",
+      "type": "series",
+      "name": "Bí Ẩn",
+      "endpoint": "/the-loai/bi-an.bi-an?page={page}"
+    },
+    {
+      "id": "the-loai-kinh-di",
+      "type": "movie",
+      "name": "Kinh Dị",
+      "endpoint": "/the-loai/kinh-di.kinh-di?page={page}"
+    },
+    {
+      "id": "the-loai-hoat-hinh",
+      "type": "series",
+      "name": "Hoạt Hình",
+      "endpoint": "/the-loai/hoat-hinh.hoat-hinh?page={page}"
+    },
+    {
+      "id": "the-loai-tinh-cam",
+      "type": "series",
+      "name": "Tình Cảm",
+      "endpoint": "/the-loai/tinh-cam.tinh-cam?page={page}"
+    },
+    {
+      "id": "the-loai-co-trang",
+      "type": "series",
+      "name": "Cổ Trang",
+      "endpoint": "/the-loai/co-trang.co-trang?page={page}"
+    },
+    {
+      "id": "the-loai-chien-tranh",
+      "type": "movie",
+      "name": "Chiến Tranh",
+      "endpoint": "/the-loai/chien-tranh.chien-tranh?page={page}"
+    },
+    {
+      "id": "quoc-gia-au-my",
+      "type": "movie",
+      "name": "Âu Mỹ",
+      "endpoint": "/quoc-gia/au-my.74d9fa92f4dea9ecea8fc2233dc7921a?page={page}"
+    },
+    {
+      "id": "quoc-gia-trung-quoc",
+      "type": "series",
+      "name": "Trung Quốc",
+      "endpoint": "/quoc-gia/trung-quoc.3e075636c731fe0f889c69e0bf82c083?page={page}"
+    },
+    {
+      "id": "quoc-gia-nhat-ban",
+      "type": "series",
+      "name": "Nhật Bản",
+      "endpoint": "/quoc-gia/nhat-ban.05de95be5fc404da9680bbb3dd8262e6?page={page}"
+    },
+    {
+      "id": "quoc-gia-han-quoc",
+      "type": "series",
+      "name": "Hàn Quốc",
+      "endpoint": "/quoc-gia/han-quoc.05de95be5fc404da9680bbb3dd8262e6?page={page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/phim-bo?page={page}",
+      "item": ".sw-item",
+      "map": {
+        "id": "a.v-thumbnail @href",
+        "name": "h4.item-title a @title, h4.item-title a @text",
+        "poster": "img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1 @text",
+        "poster": "meta[property=\"og:image\"] @content, img[src*=\"/images/m/thumb/\"] @src",
+        "description": "meta[name=\"description\"] @content",
+        "videos": {
+          "item": "a.button-play, a[href*=\"/xem-phim/\"]",
+          "map": {
+            "title": "@text",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "a.button-play, a[href*=\"/xem-phim/\"], iframe, video, source",
+        "attr": "src, data-src, href"
+      }
+    }
+  },
+  "streamFilters": {
+    "bannedTerms": [
+      "quangcao",
+      "banner"
+    ],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4"
+    ]
+  },
+  "streamUnwrapping": [
+    "direct-m3u8"
+  ]
+}
