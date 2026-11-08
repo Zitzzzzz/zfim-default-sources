@@ -1,0 +1,211 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "500phim",
+  "name": "500Phim 4K",
+  "version": "1.0.0",
+  "description": "Kho phim 500Phim (500phim.net) - Thế giới phim 4K Ultra HD & Phụ đề Song ngữ Việt - Anh chất lượng cao. Tuyển chọn Phim Chiếu Rạp, Phim Bộ, Phim Lẻ, Thuyết Minh, Lồng Tiếng cực mạnh, Anime, Phim AI độc quyền với server stream đa luồng mượt mà",
+  "logo": "https://www.500phim.net/images/icon-192x192.png?v=5",
+  "base": "https://www.500phim.net",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://www.500phim.net/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "phim-4k",
+      "type": "movie",
+      "name": "Phim 4K Ultra HD",
+      "endpoint": "/c/phim-4k?page={page}"
+    },
+    {
+      "id": "song-ngu",
+      "type": "movie",
+      "name": "Phụ Đề Song Ngữ Việt - Anh",
+      "endpoint": "/tag/song-ngu?page={page}"
+    },
+    {
+      "id": "phim-moi",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/phim-bo?page={page}"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ Tuyển Chọn",
+      "endpoint": "/phim-bo?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ Đặc Sắc",
+      "endpoint": "/phim-le?page={page}"
+    },
+    {
+      "id": "chieu-rap",
+      "type": "movie",
+      "name": "Phim Chiếu Rạp Bom Tấn",
+      "endpoint": "/c/chieu-rap?page={page}"
+    },
+    {
+      "id": "thuyet-minh",
+      "type": "movie",
+      "name": "Phim Thuyết Minh",
+      "endpoint": "/c/thuyet-minh?page={page}"
+    },
+    {
+      "id": "long-tieng-cuc-manh",
+      "type": "movie",
+      "name": "Lồng Tiếng Cực Mạnh",
+      "endpoint": "/c/long-tieng-cuc-manh?page={page}"
+    },
+    {
+      "id": "phim-ai",
+      "type": "movie",
+      "name": "Phim Trí Tuệ Nhân Tạo (AI)",
+      "endpoint": "/phim-ai?page={page}"
+    },
+    {
+      "id": "the-loai-hanh-dong",
+      "type": "movie",
+      "name": "Hành Động - Kịch Tính",
+      "endpoint": "/the-loai/hanh-dong?page={page}"
+    },
+    {
+      "id": "the-loai-khoa-hoc-vien-tuong",
+      "type": "movie",
+      "name": "Khoa Học Viễn Tưởng",
+      "endpoint": "/the-loai/khoa-hoc-vien-tuong?page={page}"
+    },
+    {
+      "id": "the-loai-kinh-di",
+      "type": "movie",
+      "name": "Siêu Cấp Kinh Dị",
+      "endpoint": "/c/sieu-cap-kinh-di?page={page}"
+    },
+    {
+      "id": "the-loai-tinh-cam",
+      "type": "movie",
+      "name": "Tình Cảm Lãng Mạn",
+      "endpoint": "/the-loai/tinh-cam?page={page}"
+    },
+    {
+      "id": "the-loai-tam-ly",
+      "type": "series",
+      "name": "Tâm Lý - Xã Hội",
+      "endpoint": "/the-loai/tam-ly?page={page}"
+    },
+    {
+      "id": "the-loai-hai-huoc",
+      "type": "movie",
+      "name": "Hài Cười Bể Bụng",
+      "endpoint": "/c/cuoi-be-bung?page={page}"
+    },
+    {
+      "id": "the-loai-hoat-hinh",
+      "type": "series",
+      "name": "Hoạt Hình - Anime",
+      "endpoint": "/the-loai/hoat-hinh?page={page}"
+    },
+    {
+      "id": "the-loai-phieu-luu",
+      "type": "movie",
+      "name": "Phiêu Lưu",
+      "endpoint": "/the-loai/phieu-luu?page={page}"
+    },
+    {
+      "id": "the-loai-co-trang",
+      "type": "series",
+      "name": "Cổ Trang Trung Quốc",
+      "endpoint": "/c/co-trang-trung-quoc?page={page}"
+    },
+    {
+      "id": "quoc-gia-au-my",
+      "type": "movie",
+      "name": "Phim US - UK Mới",
+      "endpoint": "/c/phim-us-uk-moi?page={page}"
+    },
+    {
+      "id": "quoc-gia-han-quoc",
+      "type": "series",
+      "name": "Phim Hàn Quốc Mới",
+      "endpoint": "/c/phim-han-quoc-moi?page={page}"
+    },
+    {
+      "id": "quoc-gia-trung-quoc",
+      "type": "series",
+      "name": "Phim Trung Quốc Mới",
+      "endpoint": "/c/phim-trung-quoc-moi?page={page}"
+    },
+    {
+      "id": "quoc-gia-thai-lan",
+      "type": "series",
+      "name": "Phim Thái Lan",
+      "endpoint": "/quoc-gia/thai-lan?page={page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/c/phim-4k?page={page}",
+      "item": ".sw-cover",
+      "map": {
+        "id": "a.v-thumbnail @href",
+        "name": "h4.item-title a @title, h4.item-title a @text, img @alt",
+        "poster": "img @src"
+      }
+    },
+    "meta": {
+      "endpoint": "/{slug}",
+      "map": {
+        "name": "h1 @text",
+        "poster": "meta[property=\"og:image\"] @content, img[src*=\"cdn.500phim.net\"] @src, img @src",
+        "description": "meta[name=\"description\"] @content",
+        "videos": {
+          "item": "a[href*=\"/xem-phim/\"]",
+          "map": {
+            "title": "span.ep-title @text, @text",
+            "id": "@href"
+          }
+        }
+      }
+    },
+    "streams": {
+      "endpoint": "/{slug}",
+      "candidates": {
+        "selector": "iframe[src*=\"/embed/\"], iframe, a[href*=\"/xem-phim/\"], video, source",
+        "attr": "src, href, data-src"
+      }
+    }
+  },
+  "streamFilters": {
+    "blocklistHosts": [
+      "connatix.com",
+      "google.com",
+      "facebook.com"
+    ],
+    "bannedTerms": [
+      "quangcao",
+      "banner",
+      "tracking",
+      "connatix"
+    ],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4",
+      "chophim.app",
+      "kvp",
+      "kkphim",
+      "v8.streamvsmov",
+      "playembed.vip"
+    ]
+  },
+  "streamUnwrapping": [
+    "direct-m3u8",
+    "embed-iframe"
+  ]
+}
