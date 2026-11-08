@@ -1,7 +1,7 @@
 # 📋 ĐẶC TẢ ĐIỀU CHỈNH MÃ NGUỒN APP zFim TỐI ƯU HÓA CHO CÁC NGUỒN KHO zFim01
 > **Mã đặc tả:** `ZFIM-SPEC-ENGINE-ADAPTATION-V1`  
 > **Dành cho:** AI Agent / Kỹ sư phụ trách mã nguồn Flutter của dự án zFim (`zfim_flutter/`)  
-> **Kho nguồn tương ứng:** `zFim01.json` (Phiên bản kho hiện hành: **v1.5.3**)  
+> **Kho nguồn tương ứng:** `zFim01.json` (Phiên bản kho hiện hành: **v1.5.4**)  
 > **Ngày cập nhật:** 2026-11-08  
 
 ---
@@ -17,7 +17,8 @@ Các kỹ sư/AI Agent phụ trách app Flutter chỉ cần đọc tài liệu n
 1. [Nguồn 1: VieFlix (`vieflix`) - Đặc Tả Nâng Cấp Engine](#1-nguồn-1-vieflix-vieflix---đặc-tả-nâng-cấp-engine)
 2. [Nguồn 2: XiaoPhim (`xiaofilm`) - Đặc Tả Nâng Cấp Engine](#2-nguồn-2-xiaophim-xiaofilm---đặc-tả-nâng-cấp-engine)
 3. [Nguồn 3: 500Phim 4K (`500phim`) - Đặc Tả Nâng Cấp Engine & Trình Phát Phụ Đề Song Ngữ](#3-nguồn-3-500phim-4k-500phim---đặc-tả-nâng-cấp-engine--trình-phát-phụ-đề-song-ngữ)
-4. [Bảng Kiểm Thử Đối Soát (Verification Matrix)](#4-bảng-kiểm-thử-đối-soát-verification-matrix)
+4. [Nguồn 4: Film4k (`film4k`) - Đặc Tả Nâng Cấp Engine Đa Ngôn Ngữ & Luồng 4K Dolby EAC3](#4-nguồn-4-film4k-film4k---đặc-tả-nâng-cấp-engine-đa-ngôn-ngữ--luồng-4k-dolby-eac3)
+5. [Bảng Kiểm Thử Đối Soát (Verification Matrix)](#5-bảng-kiểm-thử-đối-soát-verification-matrix)
 
 ---
 
@@ -270,234 +271,212 @@ try {
   * Trang xem `/xem-phim/{slug}.{id}` nhúng iframe player `/embed/{id}?v=5`.
   * Luồng stream được bảo vệ bằng chuỗi mã hóa XOR Hex (`encrypted_url`) giải mã bằng secret key `"mySecretKey2024"`.
   * Sau khi giải mã, trả về trực tiếp luồng `.m3u8` chất lượng gốc 4K/Full HD từ CDN 500Phim / Chợ Phim (`https://chophim.app/public/m3u8/...`), KKPhim (`kvp`), StreamVsMov (`v8.streamvsmov.com`), hoặc PlayEmbed (`playembed.vip`).
-  * Đặc biệt: Cung cấp đồng thời file phụ đề Tiếng Việt và Tiếng Anh định dạng WebVTT (`.vtt`) trong biến `CONFIG.subtitles`.
-
----
+  * Cung cấp đồng thời file phụ đề Tiếng Việt và Tiếng Anh định dạng WebVTT (`.vtt`) trong biến `CONFIG.subtitles`.
 
 ### 3.2. Vấn đề kỹ thuật trong Engine hiện tại & Giải pháp
 
 #### Vấn đề 1: Trích xuất và Giải mã Luồng 4K XOR Hex (`encrypted_url`)
-1. **Hiện trạng:**
-   * Trong file `zfim_flutter/lib/addons/json/json_scrape_addon.dart` (dòng 982-999), hàm `_resolveCandidate` đã có bước bóc tách `encrypted_url`:
-     ```dart
-     final encMatch = RegExp(r'''"encrypted_url"\s*:\s*"([a-f0-9]+)"''', caseSensitive: false).firstMatch(body);
-     if (encMatch != null) {
-       final decrypted = StreamUnwrapper.hexXorDecrypt(encMatch.group(1)!, 'mySecretKey2024');
-       ...
-       behaviorHints: {
-         'headers': {
-           'Referer': 'https://cobephim.fun/', // <-- BỊ HARDCODE SAI DOMAIN!
-         }
-       }
-     }
-     ```
-   * **Hậu quả:** 
-     - Do header `Referer` bị hardcode là `https://cobephim.fun/`, khi phát các link 4K của 500Phim hoặc KKPhim, server CDN có thể từ chối (HTTP 403 Forbidden) do anti-hotlink check.
-     - Ngoài ra, trong iframe 500Phim có biến `var allEpisodes` và `var otherServer` chứa nhiều server khác nhau (`500 (Vietsub)`, `500TT (Song Ngữ Việt-Anh)`, `500 (Thuyết Minh)`, `c500 (Vietsub - QC)`). Engine hiện tại chỉ bóc tách 1 server đầu tiên từ `var episode`.
-
-2. **Giải pháp khắc phục trong `json_scrape_addon.dart`:**
-   * Thay `Referer` hardcode bằng domain động của nguồn (`spec.base` hoặc `https://www.500phim.net/`).
-   * Bóc tách thêm tất cả các server thay thế từ `allEpisodes` và `otherServer` trong iframe HTML để cung cấp danh sách đa server (Server Vietsub, Server Song Ngữ, Server Thuyết Minh) cho người dùng lựa chọn trong app.
-
----
-
-#### Vấn đề 2: Kích hoạt DNS-over-HTTPS (DoH) chống Sinkhole domain `chophim.app`
-1. **Hiện trạng:**
-   * Domain phân phối luồng 4K chính của 500Phim là `chophim.app` (`https://chophim.app/public/m3u8/...`).
-   * Trên một số mạng viễn thông hoặc hệ điều hành, tên miền `.app` này bị phân giải DNS cục bộ trỏ về IP sinkhole `127.0.0.1` (gây ra lỗi cURL 7 / Connection Refused / Handshake Failure).
-   * Thực tế IP máy chủ CDN Cloudflare của `chophim.app` là `104.21.72.74` và `172.67.147.200`.
-
-2. **Giải pháp khắc phục:**
-   * zFim đã tích hợp sẵn module `DohClient` (`zfim_flutter/lib/core/doh_client.dart`).
-   * Trong cấu hình phát của `media_kit` hoặc interceptor HTTP của player, khi phát hiện stream URL thuộc domain `chophim.app`, tự động kích hoạt DNS phân giải qua Cloudflare DoH (`https://1.1.1.1/dns-query`) hoặc Google DoH (`https://8.8.8.8/resolve`).
-
----
-
-#### Vấn đề 3: ĐẶC TẢ NÂNG CẤP TRÌNH PHÁT PHỤ ĐỀ SONG NGỮ (DUAL / BILINGUAL SUBTITLES)
-Đây là tính năng độc quyền và cực kỳ giá trị cho người dùng xem phim học ngoại ngữ hoặc đối chiếu lời thoại.
-
-1. **Cấu trúc dữ liệu phụ đề từ 500Phim:**
-   Trong iframe `/embed/{id}?v=5`, biến `CONFIG` chứa cấu hình WebVTT:
-   ```javascript
-   var CONFIG = {
-     "subtitles": [
-       {
-         "label": "Tiếng Việt",
-         "file": "/static/subtitles/cp-dd6fca2d1b6522d7.vtt",
-         "language": "vi",
-         "default": true
-       },
-       {
-         "label": "Tiếng Anh",
-         "file": "/static/subtitles/cp-10091fc3a423bbb2.vtt",
-         "language": "en",
-         "default": false
-       }
-     ]
-   };
-   ```
-   *Lưu ý: Thuộc tính `file` là đường dẫn tương đối, cần nối với base: `https://www.500phim.net/static/subtitles/...vtt`.*
-
-2. **Thiết kế kiến trúc Dual Subtitles trong Flutter App:**
-
-```mermaid
-flowchart TD
-    Embed["Iframe 500Phim /embed/{id}"] -->|Regex Parse| SubConfig["CONFIG.subtitles"]
-    SubConfig --> SubVi["Primary Track: Tiếng Việt (.vtt)"]
-    SubConfig --> SubEn["Secondary Track: Tiếng Anh (.vtt)"]
-    
-    SubVi --> SubService["SubtitleService (Dual Loader)"]
-    SubEn --> SubService
-    
-    PlayerPos["Player Position Stream (timecode)"] --> SubService
-    SubService --> DualRenderer["Dual Subtitle Overlay (player_screen.dart)"]
-    
-    DualRenderer --> UIEn["Dòng trên: Tiếng Anh (Font 15sp, White70, Shadow)"]
-    DualRenderer --> UIVi["Dòng dưới: Tiếng Việt (Font 19sp, Amber/Yellow, Stroke Đậm)"]
-```
-
-3. **Hướng dẫn nâng cấp code chi tiết:**
-
-##### A. Bóc tách phụ đề trong `json_scrape_addon.dart`:
-Tại hàm `_resolveCandidate` (khi giải mã iframe có `encrypted_url`):
-```dart
-// [TRÍCH XUẤT TRACKS PHỤ ĐỀ SONG NGỮ TỪ CONFIG]
-final subList = <SubtitleTrack>[];
-final configSubMatch = RegExp(r'"subtitles"\s*:\s*(\[\{[\s\S]*?\}\])').firstMatch(body);
-if (configSubMatch != null) {
-  try {
-    final rawSubs = json.decode(configSubMatch.group(1)!) as List<dynamic>;
-    for (final s in rawSubs) {
-      if (s is Map<String, dynamic>) {
-        final rawFile = (s['file'] ?? '').toString();
-        if (rawFile.isNotEmpty) {
-          final fullUrl = rawFile.startsWith('http')
-              ? rawFile
-              : '${spec.base.replaceAll(RegExp(r'/+$'), '')}${rawFile.startsWith('/') ? '' : '/'}$rawFile';
-          subList.add(SubtitleTrack(
-            label: (s['label'] ?? 'Phụ đề').toString(),
-            language: (s['language'] ?? 'vi').toString(),
-            url: fullUrl,
-            isDefault: s['default'] == true,
-          ));
-        }
+* Trong file `zfim_flutter/lib/addons/json/json_scrape_addon.dart` (dòng 982-999), hàm `_resolveCandidate` đã có bước bóc tách `encrypted_url`:
+  ```dart
+  final encMatch = RegExp(r'''"encrypted_url"\s*:\s*"([a-f0-9]+)"''', caseSensitive: false).firstMatch(body);
+  if (encMatch != null) {
+    final decrypted = StreamUnwrapper.hexXorDecrypt(encMatch.group(1)!, 'mySecretKey2024');
+    ...
+    behaviorHints: {
+      'headers': {
+        'Referer': 'https://cobephim.fun/', // <-- CẦN SỬA THÀNH DYNAMIC BASE HOẶC 500PHIM!
       }
     }
-  } catch (e) {
-    DebugLogger.instance.warning('500phim', 'Error parsing subtitles: $e');
   }
-}
-```
+  ```
+* Sửa Referer thành `spec.base` (hoặc `https://www.500phim.net/`).
 
-##### B. Cập nhật `StreamItem`:
-Gán danh sách phụ đề trích xuất được vào đối tượng `StreamItem`:
-```dart
-return StreamItem(
-  name: candidate.name,
-  title: '${candidate.title} (4K Ultra HD)',
-  url: decrypted,
-  subtitles: subList, // Truyền danh sách phụ đề vào StreamItem
-  behaviorHints: {
-    'isDirect': true,
-    'embed': false,
-    'headers': {
-      'Referer': 'https://www.500phim.net/',
-      'User-Agent': spec.headers['User-Agent'] ?? AppConstants.DEFAULT_USER_AGENT,
-    },
-    'subtitles': subList.map((e) => e.toJson()).toList(),
-  },
-);
-```
+#### Vấn đề 2: Kích hoạt DNS-over-HTTPS (DoH) cho host `chophim.app`
+* Domain `chophim.app` bị một số nhà mạng/thiết bị phân giải sinkhole về `127.0.0.1`.
+* Kích hoạt `DohClient` (`doh_client.dart`) phân giải qua Cloudflare DoH (`https://1.1.1.1/dns-query`) khi stream từ domain `chophim.app`.
 
-##### C. Cập nhật `subtitle_service.dart`:
-Hỗ trợ nạp 2 file VTT song song:
-```dart
-class DualSubtitleState {
-  final SubtitleTrack? primaryTrack;    // Tiếng Việt
-  final SubtitleTrack? secondaryTrack;  // Tiếng Anh
-  final List<SubtitleCue> primaryCues;
-  final List<SubtitleCue> secondaryCues;
-  final bool isDualEnabled;
-
-  const DualSubtitleState({
-    this.primaryTrack,
-    this.secondaryTrack,
-    this.primaryCues = const [],
-    this.secondaryCues = const [],
-    this.isDualEnabled = false,
-  });
-}
-```
-
-##### D. Cập nhật giao diện Render trong `player_screen.dart` (hoặc `subtitle_overlay.dart`):
-Hiển thị đồng thời cả hai ngôn ngữ khi `isDualEnabled == true`:
-```dart
-Widget buildDualSubtitleView(BuildContext context, String? topText, String? bottomText) {
-  if (topText == null && bottomText == null) return const SizedBox.shrink();
-
-  return Positioned(
-    left: 24,
-    right: 24,
-    bottom: 48,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // Dòng Tiếng Anh (Secondary - nằm phía trên)
-        if (topText != null && topText.isNotEmpty)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            margin: const EdgeInsets.only(bottom: 6),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.55),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Text(
-              topText,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Colors.white.withOpacity(0.85),
-                shadows: const [
-                  Shadow(blurRadius: 3, color: Colors.black, offset: Offset(1, 1)),
-                ],
-              ),
-            ),
-          ),
-
-        // Dòng Tiếng Việt (Primary - nằm phía dưới, nổi bật hơn)
-        if (bottomText != null && bottomText.isNotEmpty)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.70),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Text(
-              bottomText,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 19,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFFFEB3B), // Màu vàng sáng chuẩn phụ đề rạp
-                shadows: [
-                  Shadow(blurRadius: 4, color: Colors.black, offset: Offset(1.5, 1.5)),
-                ],
-              ),
-            ),
-          ),
-      ],
-    ),
-  );
-}
-```
+#### Vấn đề 3: ĐẶC TẢ NÂNG CẤP TRÌNH PHÁT PHỤ ĐỀ SONG NGỮ (DUAL / BILINGUAL SUBTITLES)
+1. **Trích xuất Subtitles từ `CONFIG`:**
+   ```dart
+   final subList = <SubtitleTrack>[];
+   final configSubMatch = RegExp(r'"subtitles"\s*:\s*(\[\{[\s\S]*?\}\])').firstMatch(body);
+   if (configSubMatch != null) {
+     final rawSubs = json.decode(configSubMatch.group(1)!) as List<dynamic>;
+     for (final s in rawSubs) {
+       final rawFile = s['file']?.toString() ?? '';
+       final fullUrl = rawFile.startsWith('http') ? rawFile : '${spec.base}$rawFile';
+       subList.add(SubtitleTrack(label: s['label'], language: s['language'], url: fullUrl));
+     }
+   }
+   ```
+2. **Nâng cấp `subtitle_service.dart` & `player_screen.dart`:**
+   * Nạp song song 2 track: Primary (Tiếng Việt) và Secondary (Tiếng Anh).
+   * Render dòng Tiếng Anh phía trên (font 15sp, màu trắng xám `Colors.white70`), dòng Tiếng Việt phía dưới (font 19sp, màu vàng sáng `#FFEB3B`, đổ bóng đậm).
 
 ---
 
-## 4. Bảng Kiểm Thử Đối Soát (Verification Matrix)
+## 4. Nguồn 4: Film4k (`film4k`) - Đặc Tả Nâng Cấp Engine Đa Ngôn Ngữ & Luồng 4K Dolby EAC3
+
+### 4.1. Tổng quan nguồn
+* **ID Addon:** `film4k`
+* **Loại nguồn:** REST API JSON (`json`)
+* **Tên miền hoạt động:** `https://film4k.pl`
+* **Quy mô:** Hơn 3.690+ phim điện ảnh và series đỉnh cao, chất lượng **4K Ultra HD gốc (3832x1600 HEVC / H.265, bitrate ~24 Mbps)**.
+* **Đặc tính âm thanh & phụ đề:**
+  * **Âm thanh vòm Dolby Digital Plus (EAC3 5.1 / 6 channels)** cho cả thuyết minh Tiếng Việt (`VIE (6ch EAC3)`) và âm thanh gốc Tiếng Anh (`ENG (6ch EAC3)`).
+  * Đi kèm thuyết minh Tiếng Việt chuẩn Stereo (`VIE (Stereo)`) và Tiếng Anh Stereo (`ENG (Stereo)`).
+  * Tích hợp sẵn 4 track phụ đề trong HLS (`VIE`, `ENG`, `SDH`, `British`).
+* **Đặc tính luồng phát:** 
+  * Master Playlist `.m3u8` trực tiếp tốc độ cực cao từ Cloudflare Worker CDN (`https://film4knet.ngaodacopho.workers.dev/tt/...`), đạt trạng thái `cf-cache-status: HIT`, hỗ trợ CORS đầy đủ (`access-control-allow-origin: *`).
+
+---
+
+### 4.2. Vấn đề kỹ thuật trong Engine hiện tại & Hướng dẫn sửa code
+
+#### Vấn đề 1: Xử lý trường đa ngôn ngữ dạng Map (`title`, `poster`, `overview`) trong `parseCatalogListJson`
+
+1. **Hiện trạng:**
+   * Trong API `/api/home` của `film4k.pl`, các trường dữ liệu được lưu dưới dạng Map đa ngôn ngữ:
+     ```json
+     {
+       "slug": "spider-man-brand-new-day",
+       "title": { "vi": "Người Nhện: Khởi Đầu Mới", "en": "Spider-Man: Brand New Day" },
+       "poster": { "vi": "https://image.tmdb.org/t/p/w500/...", "en": "https://image.tmdb.org/t/p/w500/..." },
+       "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+       "overview": { "vi": "...", "en": "..." },
+       "year": 2026,
+       "maxRes": "4K",
+       "mediaType": "movie"
+     }
+     ```
+   * Trong file `zfim_flutter/lib/addons/json/json_rest_addon.dart` (hàm `parseCatalogListJson`, dòng 134-143):
+     ```dart
+     final itemId = (item[idKey] ?? item['slug'] ?? '').toString();
+     final itemName = (item[nameKey] ?? item['title'] ?? '').toString();
+     ```
+   * **Hậu quả:** 
+     - Do `item['title']` là một `Map<String, dynamic>`, lệnh `item['title'].toString()` biến tên phim thành chuỗi JSON thô: `{en: Spider-Man, vi: Người Nhện}` hiển thị xấu trên thẻ card.
+     - Tương tự, nếu `item['poster']` là Map, chuỗi poster trở thành chuỗi không hợp lệ, làm vỡ hình ảnh đại diện.
+
+2. **Hướng dẫn sửa code:**
+   Thêm helper method giải nén chuỗi đa ngôn ngữ thông minh:
+   ```dart
+   String _extractLocalized(dynamic val, [String preferred = 'vi']) {
+     if (val == null) return '';
+     if (val is Map) {
+       return (val[preferred] ?? val['en'] ?? (val.values.isNotEmpty ? val.values.first : '')).toString().trim();
+     }
+     return val.toString().trim();
+   }
+   ```
+   Sau đó tại `parseCatalogListJson`:
+   ```dart
+   final rawName = _extractJsonValue(item, nameKey) ?? item['title'] ?? item['name'];
+   final itemName = _extractLocalized(rawName);
+
+   final rawPoster = _extractJsonValue(item, posterKey) ?? item['poster'] ?? item['thumb_url'];
+   String itemPoster = _extractLocalized(rawPoster);
+   ```
+
+---
+
+#### Vấn đề 2: Bóc tách đường dẫn phát cho Phim Lẻ (`movie.hlsUrl`) và Phim Bộ (`episodes.sources`) trong `parseMetaJson`
+
+1. **Hiện trạng:**
+   * Khi gọi chi tiết phim `/api/title/{slug}`:
+     * **Với phim lẻ (`mediaType == 'movie'`):** Mảng `data['episodes']` trả về rỗng `[]`. Link stream master playlist 4K nằm trực tiếp trong:
+       `data['movie']['hlsUrl']` = `"/api/hls/b0AQBRsfpaTBSJv.../master.m3u8"`
+     * **Với phim bộ (`mediaType == 'tv'`):** Mảng `data['episodes']` chứa danh sách tập:
+       ```json
+       [
+         {
+           "season": 1,
+           "episode": 1,
+           "sources": [
+             {
+               "kind": "other",
+               "url": "/api/hls/vXwveakBRwNWbew.../master.m3u8",
+               "label": "Server 1"
+             }
+           ]
+         }
+       ]
+       ```
+   * Engine hiện tại (`json_rest_addon.dart`, dòng 544-600) chỉ kiểm tra `epGroup['server_data']` hoặc `epGroup['items']`. Do đó:
+     - Phim lẻ bị rỗng tập -> sinh tập giả với ID là slug -> không lấy được link stream 4K.
+     - Phim bộ không tìm thấy `server_data` -> không lấy được `sources[0]['url']`.
+
+2. **Hướng dẫn sửa code trong `parseMetaJson`:**
+   ```dart
+   // [THÊM VÀO ĐẦU VÒNG LẶP for (final epGroup in rawEpisodes)]
+   if (epGroup is Map<String, dynamic>) {
+     // Hỗ trợ Film4k episodes with sources
+     final sources = epGroup['sources'] as List<dynamic>?;
+     if (sources != null && sources.isNotEmpty) {
+       final epNum = epGroup['episode']?.toString() ?? '$epCounter';
+       final seasonNum = epGroup['season'] is int ? epGroup['season'] as int : 1;
+       final s = sources.first;
+       final streamUrl = (s is Map ? s['url'] : '').toString();
+       if (streamUrl.isNotEmpty) {
+         final fullPlayUrl = streamUrl.startsWith('/') ? '${spec.base}$streamUrl' : streamUrl;
+         videos.add(MetaVideo(
+           id: fullPlayUrl,
+           title: 'Tập $epNum',
+           episode: int.tryParse(epNum) ?? epCounter,
+           season: seasonNum,
+           server: 'Film4k Server',
+           serverId: 'film4k_server',
+         ));
+         epCounter++;
+         continue;
+       }
+     }
+   }
+
+   // [XỬ LÝ PHIM LẺ FILM4K KHI rawEpisodes RỖNG]
+   if (videos.isEmpty) {
+     final hlsUrl = (movieObj?['hlsUrl'] ?? _extractJsonValue(data, 'movie.hlsUrl'))?.toString();
+     if (hlsUrl != null && hlsUrl.isNotEmpty) {
+       final fullPlayUrl = hlsUrl.startsWith('/') ? '${spec.base}$hlsUrl' : hlsUrl;
+       videos.add(MetaVideo(
+         id: fullPlayUrl,
+         title: 'Bản 4K Ultra HD',
+         episode: 1,
+         season: 1,
+         server: 'Film4k 4K HEVC',
+         serverId: 'film4k_direct',
+       ));
+     }
+   }
+   ```
+
+---
+
+#### Vấn đề 3: Tự động ưu tiên Audio Track Tiếng Việt (Dolby EAC3 / Stereo) trong Trình phát
+
+1. Master playlist của Film4k khai báo:
+   ```
+   #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="aud-ec3",NAME="VIE (6ch EAC3)",LANGUAGE="vie"...
+   #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="aud",NAME="VIE (Stereo)",LANGUAGE="vie"...
+   ```
+2. Trong `player_screen.dart` (hoặc cấu hình player `media_kit`):
+   Khi nạp luồng phát từ nguồn `film4k`, đặt thiết lập:
+   ```dart
+   // Tự động chọn audio track có language code == 'vie'
+   final audioTracks = player.state.tracks.audio;
+   final viTrack = audioTracks.firstWhere(
+     (t) => (t.language?.toLowerCase() == 'vie' || t.title?.toLowerCase().contains('vie') == true),
+     orElse: () => AudioTrack.auto(),
+   );
+   if (viTrack != AudioTrack.auto()) {
+     player.setAudioTrack(viTrack);
+   }
+   ```
+   Điều này giúp người dùng vào phim là có ngay thuyết minh tiếng Việt chất lượng Dolby 5.1 sống động mà không cần bấm đổi track thủ công!
+
+---
+
+## 5. Bảng Kiểm Thử Đối Soát (Verification Matrix)
 
 Sau khi điều chỉnh mã nguồn app zFim, Agent kiểm thử theo danh sách URL thực tế dưới đây:
 
@@ -515,6 +494,12 @@ Sau khi điều chỉnh mã nguồn app zFim, Agent kiểm thử theo danh sách
 | **500Phim** | Chi tiết & Danh sách tập | `https://www.500phim.net/phim/vung-dat-quy-du-2026` | Trích xuất đủ các server `500TT (Song Ngữ)`, `500 (Vietsub)`, `c500 (QC)` |
 | **500Phim** | Giải mã Luồng phát 4K | `https://www.500phim.net/embed/1523590?v=5` | Giải mã XOR `mySecretKey2024` thành link `.m3u8` trực tiếp không cần WebView |
 | **500Phim** | Trình phát Phụ đề Song ngữ | `https://www.500phim.net/phim/vung-dat-quy-du-2026` | Tải đồng thời 2 file `.vtt`, render song song phụ đề Tiếng Anh (trên) và Tiếng Việt (dưới) |
+| **Film4k** | Danh sách Mới cập nhật | `https://film4k.pl/api/home?page=1` | Hiển thị 24 phim, tên phim và poster Tiếng Việt hiển thị đúng, không bị chuỗi Object `{vi: ...}` |
+| **Film4k** | Phim Bộ 4K | `https://film4k.pl/api/home?type=tv&page=1` | Lọc chính xác 100% phim series 4K |
+| **Film4k** | Phim Lẻ 4K | `https://film4k.pl/api/home?type=movie&page=1` | Lọc chính xác 100% phim lẻ 4K |
+| **Film4k** | Xem Phim Lẻ 4K | `https://film4k.pl/api/title/spider-man-brand-new-day` | Trích xuất trực tiếp `movie.hlsUrl`, phát luồng 4K HEVC 3832x1600 mượt mà |
+| **Film4k** | Thuyết minh Dolby EAC3 | `https://film4k.pl/api/title/spider-man-brand-new-day` | Tự động chọn track `VIE (6ch EAC3)` hoặc `VIE (Stereo)`, âm thanh vòm sống động |
+| **Film4k** | Tìm kiếm Gợi ý | `https://film4k.pl/api/search/suggest?q=spider` | Trả về danh sách kết quả phim kèm năm và ảnh poster chuẩn |
 
 ---
 *Tài liệu được sinh tự động bởi Antigravity Engine - Quản lý Kho nguồn zFim.*

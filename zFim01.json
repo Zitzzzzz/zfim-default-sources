@@ -3,8 +3,8 @@
   "kind": "collection",
   "id": "zFim01",
   "name": "zFim01",
-  "description": "Kho nguồn tổng hợp zFim01 chính thức (18 nguồn: Phim truyện HD, Phim 4K Song ngữ, Hoạt hình 3D Trung Quốc 4K, Anime, Phim bộ, Thể thao trực tiếp & Kênh truyền hình)",
-  "version": "1.5.3",
+  "description": "Kho nguồn tổng hợp zFim01 chính thức (19 nguồn: Phim truyện HD, Phim 4K Song ngữ, Hoạt hình 3D Trung Quốc 4K, Anime, Phim bộ, Thể thao trực tiếp & Kênh truyền hình)",
+  "version": "1.5.4",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
@@ -817,6 +817,172 @@
       "streamUnwrapping": [
         "direct-m3u8",
         "embed-iframe"
+      ]
+    },
+    {
+      "$schema": "zfim/addon-json/v1",
+      "kind": "single",
+      "id": "film4k",
+      "name": "Film4k",
+      "version": "1.0.0",
+      "description": "Kho phim Film4k (film4k.pl) - Trải nghiệm điện ảnh đỉnh cao với chuẩn 4K Ultra HD (3832x1600 HEVC), âm thanh vòm Dolby Digital Plus (EAC3 5.1), thuyết minh tiếng Việt và phụ đề đa ngôn ngữ tốc độ cao từ Cloudflare CDN",
+      "logo": "https://film4k.pl/favicon-32.png",
+      "base": "https://film4k.pl",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Referer": "https://film4k.pl/"
+      },
+      "types": [
+        "series",
+        "movie"
+      ],
+      "catalogs": [
+        {
+          "id": "phim-moi",
+          "type": "series",
+          "name": "Mới Cập Nhật",
+          "endpoint": "/api/home?page={page}"
+        },
+        {
+          "id": "phim-bo-4k",
+          "type": "series",
+          "name": "Phim Bộ 4K Ultra HD",
+          "endpoint": "/api/home?type=tv&page={page}"
+        },
+        {
+          "id": "phim-le-4k",
+          "type": "movie",
+          "name": "Phim Lẻ 4K Ultra HD",
+          "endpoint": "/api/home?type=movie&page={page}"
+        },
+        {
+          "id": "phim-thinh-hanh",
+          "type": "movie",
+          "name": "Top Thịnh Hành",
+          "endpoint": "/api/home"
+        },
+        {
+          "id": "the-loai-hanh-dong",
+          "type": "movie",
+          "name": "Phim Hành Động",
+          "endpoint": "/api/home/genre?genre=Phim%20H%C3%A0nh%20%C4%90%E1%BB%99ng"
+        },
+        {
+          "id": "the-loai-khoa-hoc-vien-tuong",
+          "type": "movie",
+          "name": "Khoa Học Viễn Tưởng",
+          "endpoint": "/api/home/genre?genre=Phim%20Khoa%20H%E1%BB%8Dc%20Vi%E1%BB%85n%20T%C6%B0%E1%BB%9Fng"
+        },
+        {
+          "id": "the-loai-hoat-hinh",
+          "type": "series",
+          "name": "Hoạt Hình - Anime",
+          "endpoint": "/api/home/genre?genre=Phim%20Ho%E1%BB%A1t%20H%C3%ACnh"
+        },
+        {
+          "id": "the-loai-kinh-di",
+          "type": "movie",
+          "name": "Phim Kinh Dị",
+          "endpoint": "/api/home/genre?genre=Phim%20Kinh%20D%E1%BB%8B"
+        },
+        {
+          "id": "the-loai-hai",
+          "type": "movie",
+          "name": "Phim Hài Hước",
+          "endpoint": "/api/home/genre?genre=Phim%20H%C3%A0i"
+        },
+        {
+          "id": "the-loai-lang-man",
+          "type": "movie",
+          "name": "Phim Lãng Mạn",
+          "endpoint": "/api/home/genre?genre=Phim%20L%C3%A3ng%20M%E1%BA%A1n"
+        },
+        {
+          "id": "the-loai-chinh-kich",
+          "type": "series",
+          "name": "Phim Chính Kịch",
+          "endpoint": "/api/home/genre?genre=Phim%20Ch%C3%ADnh%20K%E1%BB%8Bch"
+        },
+        {
+          "id": "the-loai-hinh-su",
+          "type": "series",
+          "name": "Phim Hình Sự",
+          "endpoint": "/api/home/genre?genre=Phim%20H%C3%ACnh%20S%E1%BB%B1"
+        },
+        {
+          "id": "the-loai-phieu-luu",
+          "type": "movie",
+          "name": "Phim Phiêu Lưu",
+          "endpoint": "/api/home/genre?genre=Phim%20Phi%C3%AAu%20L%C6%B0u"
+        },
+        {
+          "id": "the-loai-chien-tranh",
+          "type": "movie",
+          "name": "Phim Chiến Tranh",
+          "endpoint": "/api/home/genre?genre=Phim%20Chi%E1%BA%BFn%20Tranh"
+        },
+        {
+          "id": "the-loai-gia-dinh",
+          "type": "movie",
+          "name": "Phim Gia Đình",
+          "endpoint": "/api/home/genre?genre=Phim%20Gia%20%C4%90%C3%ACnh"
+        },
+        {
+          "id": "the-loai-tai-lieu",
+          "type": "movie",
+          "name": "Phim Tài Liệu",
+          "endpoint": "/api/home/genre?genre=Phim%20T%C3%A0i%20Li%E1%BB%87u"
+        }
+      ],
+      "json": {
+        "list": {
+          "path": "/api/home?page={page}",
+          "items": "list",
+          "map": {
+            "id": "slug",
+            "name": "title.vi",
+            "poster": "poster.vi",
+            "background": "backdrop",
+            "description": "overview.vi"
+          }
+        },
+        "meta": {
+          "path": "/api/title/{id}",
+          "map": {
+            "name": "movie.title.vi",
+            "poster": "movie.poster.vi",
+            "background": "movie.backdrop",
+            "description": "movie.overview.vi",
+            "episodes": "episodes"
+          }
+        },
+        "streams": {
+          "path": "{embed_url}",
+          "regexes": [
+            "https?://[^\"'\\s]+\\.m3u8",
+            "https?://[^\"'\\s]+\\.mp4",
+            "/api/hls/[^\"'\\s]+\\.m3u8"
+          ]
+        }
+      },
+      "streamFilters": {
+        "blocklistHosts": [
+          "google.com",
+          "facebook.com"
+        ],
+        "bannedTerms": [
+          "quangcao",
+          "banner"
+        ],
+        "allowedIndicators": [
+          ".m3u8",
+          ".mp4",
+          "film4knet.ngaodacopho.workers.dev",
+          "/api/hls/"
+        ]
+      },
+      "streamUnwrapping": [
+        "direct-m3u8"
       ]
     },
     {
