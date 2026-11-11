@@ -4,14 +4,14 @@
   "id": "zFim01",
   "name": "zFim01",
   "description": "Kho nguồn tổng hợp zFim01 chính thức (19 nguồn: Phim truyện HD, Phim 4K Song ngữ, Hoạt hình 3D Trung Quốc 4K, Anime, Phim bộ, Thể thao trực tiếp & Kênh truyền hình)",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
       "kind": "single",
       "id": "nguonc",
       "name": "Nguồn C",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "description": "Kho phim NguonC (phim.nguonc.com) - Chuẩn mực vàng cho zFim với luồng HLS siêu tốc, poster điện ảnh 2:3 chuẩn sắc nét, 19 chuyên mục phong phú",
       "logo": "https://phim.nguonc.com/favicon.ico",
       "base": "https://phim.nguonc.com",
@@ -193,7 +193,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -605,7 +606,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -982,7 +984,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -1167,7 +1170,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -2033,7 +2037,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -2187,7 +2192,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -2287,7 +2293,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
@@ -2466,7 +2473,8 @@
         ]
       },
       "streamUnwrapping": [
-        "direct-m3u8"
+        "direct-m3u8",
+        "streamc"
       ]
     },
     {
