@@ -1,0 +1,191 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "nguonc",
+  "name": "Nguồn C",
+  "version": "1.3.2",
+  "description": "Kho phim NguonC (phim.nguonc.com) - Chuẩn mực vàng cho zFim với luồng HLS siêu tốc, poster điện ảnh 2:3 chuẩn sắc nét, 19 chuyên mục phong phú",
+  "logo": "https://phim.nguonc.com/favicon.ico",
+  "base": "https://phim.nguonc.com",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://phim.nguonc.com/"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "phim-moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/api/films/phim-moi-cap-nhat?page={page}"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ",
+      "endpoint": "/api/films/danh-sach/phim-bo?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ",
+      "endpoint": "/api/films/danh-sach/phim-le?page={page}"
+    },
+    {
+      "id": "hoat-hinh",
+      "type": "series",
+      "name": "Hoạt Hình",
+      "endpoint": "/api/films/the-loai/hoat-hinh?page={page}"
+    },
+    {
+      "id": "tv-shows",
+      "type": "series",
+      "name": "TV Shows",
+      "endpoint": "/api/films/danh-sach/tv-shows?page={page}"
+    },
+    {
+      "id": "phim-ai",
+      "type": "movie",
+      "name": "Phim AI",
+      "endpoint": "/api/films/danh-sach/phim-ai?page={page}"
+    },
+    {
+      "id": "the-loai-hanh-dong",
+      "type": "movie",
+      "name": "Hành Động",
+      "endpoint": "/api/films/the-loai/hanh-dong?page={page}"
+    },
+    {
+      "id": "the-loai-phieu-luu",
+      "type": "movie",
+      "name": "Phiêu Lưu",
+      "endpoint": "/api/films/the-loai/phieu-luu?page={page}"
+    },
+    {
+      "id": "the-loai-phim-hai",
+      "type": "movie",
+      "name": "Hài Hước",
+      "endpoint": "/api/films/the-loai/phim-hai?page={page}"
+    },
+    {
+      "id": "the-loai-co-trang",
+      "type": "series",
+      "name": "Cổ Trang",
+      "endpoint": "/api/films/the-loai/co-trang?page={page}"
+    },
+    {
+      "id": "the-loai-tam-ly",
+      "type": "series",
+      "name": "Tâm Lý",
+      "endpoint": "/api/films/the-loai/tam-ly?page={page}"
+    },
+    {
+      "id": "the-loai-tinh-cam",
+      "type": "series",
+      "name": "Tình Cảm",
+      "endpoint": "/api/films/the-loai/tinh-cam?page={page}"
+    },
+    {
+      "id": "the-loai-hinh-su",
+      "type": "series",
+      "name": "Hình Sự",
+      "endpoint": "/api/films/the-loai/hinh-su?page={page}"
+    },
+    {
+      "id": "the-loai-khoa-hoc-vien-tuong",
+      "type": "movie",
+      "name": "Khoa Học Viễn Tưởng",
+      "endpoint": "/api/films/the-loai/khoa-hoc-vien-tuong?page={page}"
+    },
+    {
+      "id": "the-loai-kinh-di",
+      "type": "movie",
+      "name": "Kinh Dị",
+      "endpoint": "/api/films/the-loai/kinh-di?page={page}"
+    },
+    {
+      "id": "the-loai-chien-tranh",
+      "type": "movie",
+      "name": "Chiến Tranh",
+      "endpoint": "/api/films/the-loai/chien-tranh?page={page}"
+    },
+    {
+      "id": "the-loai-bi-an",
+      "type": "series",
+      "name": "Bí Ẩn",
+      "endpoint": "/api/films/the-loai/bi-an?page={page}"
+    },
+    {
+      "id": "the-loai-gia-tuong",
+      "type": "series",
+      "name": "Giả Tưởng",
+      "endpoint": "/api/films/the-loai/gia-tuong?page={page}"
+    },
+    {
+      "id": "the-loai-lich-su",
+      "type": "movie",
+      "name": "Lịch Sử",
+      "endpoint": "/api/films/the-loai/lich-su?page={page}"
+    }
+  ],
+  "json": {
+    "list": {
+      "path": "/api/films/phim-moi-cap-nhat?page={page}",
+      "items": "items",
+      "map": {
+        "id": "slug",
+        "name": "name",
+        "poster": "thumb_url_webp",
+        "background": "poster_url_webp",
+        "description": "description"
+      }
+    },
+    "meta": {
+      "path": "/api/film/{slug}",
+      "map": {
+        "name": "movie.name",
+        "poster": "movie.thumb_url_webp",
+        "background": "movie.poster_url_webp",
+        "description": "movie.description",
+        "episodes": "movie.episodes"
+      }
+    },
+    "streams": {
+      "path": "/api/film/{slug}",
+      "regexes": [
+        "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+        "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+      ]
+    }
+  },
+  "streamFilters": {
+    "blocklistHosts": [
+      "ads.example.com",
+      "doubleclick.net",
+      "googlesyndication.com"
+    ],
+    "bannedTerms": [
+      "quangcao",
+      "promo",
+      "intro"
+    ],
+    "falseStreamExts": [
+      ".jpg",
+      ".png",
+      ".webp",
+      ".vtt",
+      ".svg"
+    ],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4"
+    ]
+  },
+  "streamUnwrapping": [
+    "direct-m3u8",
+    "streamc"
+  ]
+}

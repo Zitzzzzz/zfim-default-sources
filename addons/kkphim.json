@@ -2,35 +2,152 @@
   "$schema": "zfim/addon-json/v1",
   "kind": "single",
   "id": "kkphim",
-  "name": "KKPhim (Xem Mọi Thiết Bị)",
-  "version": "1.0.0",
-  "description": "Kho phim lẻ, phim bộ, hoạt hình cập nhật liên tục từ PhimAPI / KKPhim",
-  "logo": "https://phimimg.com/uploads/movies/logo.png",
+  "name": "KKPhim",
+  "version": "1.3.1",
+  "description": "Kho phim điện ảnh, phim bộ, hoạt hình từ PhimAPI (phimapi.com / kkphim.com) - Chuẩn mực 20 chuyên mục phong phú, poster điện ảnh 2:3 chuẩn sắc nét, direct HLS link_m3u8 siêu tốc",
+  "logo": "https://phimapi.com/favicon.ico",
   "base": "https://phimapi.com",
   "headers": {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Referer": "https://phimapi.com/"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://player.phimapi.com/",
+    "Origin": "https://player.phimapi.com"
   },
   "types": [
-    "movie",
-    "series"
+    "series",
+    "movie"
   ],
   "catalogs": [
     {
       "id": "phim-moi-cap-nhat",
-      "type": "movie",
+      "type": "series",
       "name": "Mới Cập Nhật",
-      "endpoint": "/danh-sach/phim-moi-cap-nhat?page={page}"
+      "endpoint": "/v1/api/danh-sach/phim-moi-cap-nhat?page={page}"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ",
+      "endpoint": "/v1/api/danh-sach/phim-bo?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ",
+      "endpoint": "/v1/api/danh-sach/phim-le?page={page}"
+    },
+    {
+      "id": "hoat-hinh",
+      "type": "series",
+      "name": "Hoạt Hình",
+      "endpoint": "/v1/api/danh-sach/hoat-hinh?page={page}"
+    },
+    {
+      "id": "tv-shows",
+      "type": "series",
+      "name": "TV Shows",
+      "endpoint": "/v1/api/danh-sach/tv-shows?page={page}"
+    },
+    {
+      "id": "the-loai-hanh-dong",
+      "type": "movie",
+      "name": "Hành Động",
+      "endpoint": "/v1/api/the-loai/hanh-dong?page={page}"
+    },
+    {
+      "id": "the-loai-co-trang",
+      "type": "series",
+      "name": "Cổ Trang",
+      "endpoint": "/v1/api/the-loai/co-trang?page={page}"
+    },
+    {
+      "id": "the-loai-tinh-cam",
+      "type": "series",
+      "name": "Tình Cảm",
+      "endpoint": "/v1/api/the-loai/tinh-cam?page={page}"
+    },
+    {
+      "id": "the-loai-tam-ly",
+      "type": "series",
+      "name": "Tâm Lý",
+      "endpoint": "/v1/api/the-loai/tam-ly?page={page}"
+    },
+    {
+      "id": "the-loai-hai-huoc",
+      "type": "movie",
+      "name": "Hài Hước",
+      "endpoint": "/v1/api/the-loai/hai-huoc?page={page}"
+    },
+    {
+      "id": "the-loai-kinh-di",
+      "type": "movie",
+      "name": "Kinh Dị",
+      "endpoint": "/v1/api/the-loai/kinh-di?page={page}"
+    },
+    {
+      "id": "the-loai-vien-tuong",
+      "type": "movie",
+      "name": "Viễn Tưởng",
+      "endpoint": "/v1/api/the-loai/vien-tuong?page={page}"
+    },
+    {
+      "id": "the-loai-hinh-su",
+      "type": "series",
+      "name": "Hình Sự",
+      "endpoint": "/v1/api/the-loai/hinh-su?page={page}"
+    },
+    {
+      "id": "the-loai-vo-thuat",
+      "type": "movie",
+      "name": "Võ Thuật",
+      "endpoint": "/v1/api/the-loai/vo-thuat?page={page}"
+    },
+    {
+      "id": "quoc-gia-han-quoc",
+      "type": "series",
+      "name": "Hàn Quốc",
+      "endpoint": "/v1/api/quoc-gia/han-quoc?page={page}"
+    },
+    {
+      "id": "quoc-gia-trung-quoc",
+      "type": "series",
+      "name": "Trung Quốc",
+      "endpoint": "/v1/api/quoc-gia/trung-quoc?page={page}"
+    },
+    {
+      "id": "quoc-gia-au-my",
+      "type": "movie",
+      "name": "Âu Mỹ",
+      "endpoint": "/v1/api/quoc-gia/au-my?page={page}"
+    },
+    {
+      "id": "quoc-gia-nhat-ban",
+      "type": "series",
+      "name": "Nhật Bản",
+      "endpoint": "/v1/api/quoc-gia/nhat-ban?page={page}"
+    },
+    {
+      "id": "quoc-gia-thai-lan",
+      "type": "series",
+      "name": "Thái Lan",
+      "endpoint": "/v1/api/quoc-gia/thai-lan?page={page}"
+    },
+    {
+      "id": "quoc-gia-viet-nam",
+      "type": "movie",
+      "name": "Việt Nam",
+      "endpoint": "/v1/api/quoc-gia/viet-nam?page={page}"
     }
   ],
   "json": {
     "list": {
-      "path": "/danh-sach/phim-moi-cap-nhat?page={page}",
-      "items": "items",
+      "path": "/v1/api/danh-sach/phim-moi-cap-nhat?page={page}",
+      "items": "data.items",
       "map": {
         "id": "slug",
         "name": "name",
-        "poster": "poster_url"
+        "poster": "poster_url",
+        "background": "thumb_url",
+        "description": "origin_name"
       }
     },
     "meta": {
@@ -38,6 +155,7 @@
       "map": {
         "name": "movie.name",
         "poster": "movie.poster_url",
+        "background": "movie.thumb_url",
         "description": "movie.content",
         "episodes": "episodes"
       }
@@ -45,21 +163,28 @@
     "streams": {
       "path": "/phim/{slug}",
       "regexes": [
-        "https?://[^\"'\\s]+\\.m3u8"
+        "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+        "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
       ]
     }
   },
   "streamFilters": {
-    "blocklistHosts": [],
+    "blocklistHosts": [
+      "ads.example.com",
+      "doubleclick.net",
+      "googlesyndication.com"
+    ],
     "bannedTerms": [
       "quangcao",
-      "promo"
+      "promo",
+      "intro"
     ],
     "falseStreamExts": [
       ".jpg",
       ".png",
       ".webp",
-      ".vtt"
+      ".vtt",
+      ".svg"
     ],
     "allowedIndicators": [
       ".m3u8",
@@ -67,6 +192,7 @@
     ]
   },
   "streamUnwrapping": [
-    "direct-m3u8"
+    "direct-m3u8",
+    "streamc"
   ]
 }

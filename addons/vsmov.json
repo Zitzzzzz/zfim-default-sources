@@ -1,9 +1,156 @@
 {
   "$schema": "zfim/addon-json/v1",
+  "kind": "single",
   "id": "vsmov",
   "name": "VSMOV",
-  "version": "1.0.0",
+  "version": "1.2.1",
+  "description": "Nguồn API phim miễn phí VSMOV (vsmov.com) - Đầy đủ 13 chuyên mục, phim lẻ, phim bộ, hoạt hình, quốc gia, giải mã direct signed HLS stream siêu mượt",
+  "logo": "https://vsmov.com/favicon-vsm.png",
   "base": "https://vsmov.com",
-  "unsupported": "needs-js",
-  "reason": "Stream playback relies on client-side JavaScript URL assembly (baseUrl + '/stream/' + videoHash + '/master.m3u8') from dynamic embed iframe (v13.streamvsmov.com). Declarative JSON v1 cannot execute dynamic JS logic."
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Referer": "https://vsmov.com/",
+    "Origin": "https://vsmov.com"
+  },
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "id": "phim-moi-cap-nhat",
+      "type": "series",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/api/danh-sach/phim-moi-cap-nhat?page={page}"
+    },
+    {
+      "id": "phim-bo",
+      "type": "series",
+      "name": "Phim Bộ",
+      "endpoint": "/api/danh-sach/phim-bo?page={page}"
+    },
+    {
+      "id": "phim-le",
+      "type": "movie",
+      "name": "Phim Lẻ",
+      "endpoint": "/api/danh-sach/phim-le?page={page}"
+    },
+    {
+      "id": "hoat-hinh",
+      "type": "series",
+      "name": "Hoạt Hình",
+      "endpoint": "/api/the-loai/hoat-hinh?page={page}"
+    },
+    {
+      "id": "subteam",
+      "type": "series",
+      "name": "Phim Subteam",
+      "endpoint": "/api/danh-sach/subteam?page={page}"
+    },
+    {
+      "id": "han-quoc",
+      "type": "series",
+      "name": "Phim Hàn Quốc",
+      "endpoint": "/api/quoc-gia/han-quoc?page={page}"
+    },
+    {
+      "id": "trung-quoc",
+      "type": "series",
+      "name": "Phim Trung Quốc",
+      "endpoint": "/api/quoc-gia/trung-quoc?page={page}"
+    },
+    {
+      "id": "au-my",
+      "type": "movie",
+      "name": "Phim Âu Mỹ",
+      "endpoint": "/api/quoc-gia/au-my?page={page}"
+    },
+    {
+      "id": "hanh-dong",
+      "type": "movie",
+      "name": "Hành Động",
+      "endpoint": "/api/the-loai/hanh-dong?page={page}"
+    },
+    {
+      "id": "co-trang",
+      "type": "series",
+      "name": "Cổ Trang",
+      "endpoint": "/api/the-loai/co-trang?page={page}"
+    },
+    {
+      "id": "lang-man",
+      "type": "series",
+      "name": "Lãng Mạn",
+      "endpoint": "/api/the-loai/lang-man?page={page}"
+    },
+    {
+      "id": "khoa-hoc-vien-tuong",
+      "type": "movie",
+      "name": "Khoa Học Viễn Tưởng",
+      "endpoint": "/api/the-loai/khoa-hoc-vien-tuong?page={page}"
+    },
+    {
+      "id": "kinh-di",
+      "type": "movie",
+      "name": "Kinh Dị",
+      "endpoint": "/api/the-loai/kinh-di?page={page}"
+    }
+  ],
+  "json": {
+    "list": {
+      "path": "/api/danh-sach/phim-moi-cap-nhat?page={page}",
+      "items": "items",
+      "map": {
+        "id": "slug",
+        "name": "name",
+        "poster": "thumb_url",
+        "background": "poster_url",
+        "description": "origin_name"
+      }
+    },
+    "meta": {
+      "path": "/api/phim/{slug}",
+      "map": {
+        "name": "movie.name",
+        "poster": "movie.thumb_url",
+        "background": "movie.poster_url",
+        "description": "movie.content",
+        "episodes": "episodes"
+      }
+    },
+    "streams": {
+      "path": "/api/phim/{slug}",
+      "regexes": [
+        "https?:\\/\\/[^\"'\\s]+\\.m3u8[^\"'\\s]*",
+        "https?:\\/\\/[^\"'\\s]+\\.mp4[^\"'\\s]*"
+      ]
+    }
+  },
+  "streamFilters": {
+    "blocklistHosts": [
+      "ads.example.com",
+      "doubleclick.net",
+      "googlesyndication.com"
+    ],
+    "bannedTerms": [
+      "quangcao",
+      "promo",
+      "intro"
+    ],
+    "falseStreamExts": [
+      ".jpg",
+      ".png",
+      ".webp",
+      ".vtt",
+      ".svg"
+    ],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4"
+    ]
+  },
+  "streamUnwrapping": [
+    "direct-m3u8",
+    "streamc"
+  ]
 }

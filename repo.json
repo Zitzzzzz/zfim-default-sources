@@ -4,14 +4,14 @@
   "id": "zFim01",
   "name": "zFim01",
   "description": "Kho nguồn tổng hợp zFim01 chính thức (19 nguồn: Phim truyện HD, Phim 4K Song ngữ, Hoạt hình 3D Trung Quốc 4K, Anime, Phim bộ, Thể thao trực tiếp & Kênh truyền hình)",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
       "kind": "single",
       "id": "nguonc",
       "name": "Nguồn C",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "description": "Kho phim NguonC (phim.nguonc.com) - Chuẩn mực vàng cho zFim với luồng HLS siêu tốc, poster điện ảnh 2:3 chuẩn sắc nét, 19 chuyên mục phong phú",
       "logo": "https://phim.nguonc.com/favicon.ico",
       "base": "https://phim.nguonc.com",
@@ -1849,13 +1849,14 @@
       "kind": "single",
       "id": "kkphim",
       "name": "KKPhim",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "description": "Kho phim điện ảnh, phim bộ, hoạt hình từ PhimAPI (phimapi.com / kkphim.com) - Chuẩn mực 20 chuyên mục phong phú, poster điện ảnh 2:3 chuẩn sắc nét, direct HLS link_m3u8 siêu tốc",
       "logo": "https://phimapi.com/favicon.ico",
       "base": "https://phimapi.com",
       "headers": {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Referer": "https://phimapi.com/"
+        "Referer": "https://player.phimapi.com/",
+        "Origin": "https://player.phimapi.com"
       },
       "types": [
         "series",
@@ -2046,13 +2047,14 @@
       "kind": "single",
       "id": "vsmov",
       "name": "VSMOV",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "Nguồn API phim miễn phí VSMOV (vsmov.com) - Đầy đủ 13 chuyên mục, phim lẻ, phim bộ, hoạt hình, quốc gia, giải mã direct signed HLS stream siêu mượt",
       "logo": "https://vsmov.com/favicon-vsm.png",
       "base": "https://vsmov.com",
       "headers": {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Referer": "https://vsmov.com/"
+        "Referer": "https://vsmov.com/",
+        "Origin": "https://vsmov.com"
       },
       "types": [
         "series",
