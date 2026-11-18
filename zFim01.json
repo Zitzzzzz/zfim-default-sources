@@ -4,7 +4,7 @@
   "id": "zFim01",
   "name": "zFim01",
   "description": "Kho nguồn tổng hợp zFim01 chính thức (19 nguồn: Phim truyện HD, Phim 4K Song ngữ, Hoạt hình 3D Trung Quốc 4K, Anime, Phim bộ, Thể thao trực tiếp & Kênh truyền hình)",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "addons": [
     {
       "$schema": "zfim/addon-json/v1",
@@ -615,7 +615,7 @@
       "kind": "single",
       "id": "500phim",
       "name": "500Phim 4K",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Kho phim 500Phim (500phim.net) - Thế giới phim 4K Ultra HD & Phụ đề Song ngữ Việt - Anh chất lượng cao. Tuyển chọn Phim Chiếu Rạp, Phim Bộ, Phim Lẻ, Thuyết Minh, Lồng Tiếng cực mạnh, Anime, Phim AI độc quyền với Storyboard Seek Preview siêu mượt mà",
       "logo": "https://www.500phim.net/images/icon-192x192.png?v=5",
       "base": "https://www.500phim.net",
@@ -791,6 +791,24 @@
           "endpoint": "/the-loai/hoc-duong?page={page}"
         },
         {
+          "id": "quoc-gia-trung-quoc",
+          "type": "series",
+          "name": "Phim Trung Quốc",
+          "endpoint": "/quoc-gia/trung-quoc?page={page}"
+        },
+        {
+          "id": "quoc-gia-han-quoc",
+          "type": "series",
+          "name": "Phim Hàn Quốc",
+          "endpoint": "/quoc-gia/han-quoc?page={page}"
+        },
+        {
+          "id": "quoc-gia-au-my",
+          "type": "movie",
+          "name": "Phim Âu Mỹ",
+          "endpoint": "/quoc-gia/au-my?page={page}"
+        },
+        {
           "id": "quoc-gia-thai-lan",
           "type": "series",
           "name": "Phim Thái Lan",
@@ -819,14 +837,23 @@
             "poster": "img @src"
           }
         },
+        "search": {
+          "endpoint": "/tim-kiem?q={query}&page={page}",
+          "item": ".sw-cover",
+          "map": {
+            "id": "a.v-thumbnail @href",
+            "name": "h4.item-title a @title, h4.item-title a @text, img @alt",
+            "poster": "img @src"
+          }
+        },
         "meta": {
-          "endpoint": "/{slug}",
+          "endpoint": "{slug}",
           "map": {
             "name": "h1 @text",
             "poster": "meta[property=\"og:image\"] @content, img[src*=\"cdn.500phim.net\"] @src, img @src",
             "description": "meta[name=\"description\"] @content",
             "videos": {
-              "item": "a.item[href*=\"/xem-phim/\"], a.edition-pill-item[href*=\"/xem-phim/\"]",
+              "item": "a[href*=\"/xem-phim/\"], a.item[href*=\"/xem-phim/\"], a.edition-pill-item[href*=\"/xem-phim/\"]",
               "map": {
                 "title": "div.ep-sort @text, span.ep-title @text, span.ep-badge @text, @text",
                 "id": "@href"
@@ -835,7 +862,7 @@
           }
         },
         "streams": {
-          "endpoint": "/{slug}",
+          "endpoint": "{slug}",
           "candidates": {
             "selector": "iframe#embed-player, iframe[src*=\"embed\"], iframe",
             "attr": "src"
