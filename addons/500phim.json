@@ -3,8 +3,8 @@
   "kind": "single",
   "id": "500phim",
   "name": "500Phim 4K",
-  "version": "1.0.0",
-  "description": "Kho phim 500Phim (500phim.net) - Thế giới phim 4K Ultra HD & Phụ đề Song ngữ Việt - Anh chất lượng cao. Tuyển chọn Phim Chiếu Rạp, Phim Bộ, Phim Lẻ, Thuyết Minh, Lồng Tiếng cực mạnh, Anime, Phim AI độc quyền với server stream đa luồng mượt mà",
+  "version": "1.1.0",
+  "description": "Kho phim 500Phim (500phim.net) - Thế giới phim 4K Ultra HD & Phụ đề Song ngữ Việt - Anh chất lượng cao. Tuyển chọn Phim Chiếu Rạp, Phim Bộ, Phim Lẻ, Thuyết Minh, Lồng Tiếng cực mạnh, Anime, Phim AI độc quyền với Storyboard Seek Preview siêu mượt mà",
   "logo": "https://www.500phim.net/images/icon-192x192.png?v=5",
   "base": "https://www.500phim.net",
   "headers": {
@@ -29,10 +29,10 @@
       "endpoint": "/tag/song-ngu?page={page}"
     },
     {
-      "id": "phim-moi",
-      "type": "series",
-      "name": "Mới Cập Nhật",
-      "endpoint": "/phim-bo?page={page}"
+      "id": "chieu-rap",
+      "type": "movie",
+      "name": "Phim Chiếu Rạp Bom Tấn",
+      "endpoint": "/c/chieu-rap?page={page}"
     },
     {
       "id": "phim-bo",
@@ -45,12 +45,6 @@
       "type": "movie",
       "name": "Phim Lẻ Đặc Sắc",
       "endpoint": "/phim-le?page={page}"
-    },
-    {
-      "id": "chieu-rap",
-      "type": "movie",
-      "name": "Phim Chiếu Rạp Bom Tấn",
-      "endpoint": "/c/chieu-rap?page={page}"
     },
     {
       "id": "thuyet-minh",
@@ -71,10 +65,58 @@
       "endpoint": "/phim-ai?page={page}"
     },
     {
+      "id": "boi-3-to-com",
+      "type": "series",
+      "name": "Bới 3 Tô Cơm - Cực Cuốn",
+      "endpoint": "/c/boi-3-to-com?page={page}"
+    },
+    {
+      "id": "cuoi-be-bung",
+      "type": "movie",
+      "name": "Hài Cười Bể Bụng",
+      "endpoint": "/c/cuoi-be-bung?page={page}"
+    },
+    {
+      "id": "sieu-cap-kinh-di",
+      "type": "movie",
+      "name": "Siêu Cấp Kinh Dị",
+      "endpoint": "/c/sieu-cap-kinh-di?page={page}"
+    },
+    {
+      "id": "co-trang-trung-quoc",
+      "type": "series",
+      "name": "Cổ Trang Trung Quốc",
+      "endpoint": "/c/co-trang-trung-quoc?page={page}"
+    },
+    {
+      "id": "phim-trung-quoc-moi",
+      "type": "series",
+      "name": "Phim Trung Quốc Mới",
+      "endpoint": "/c/phim-trung-quoc-moi?page={page}"
+    },
+    {
+      "id": "phim-us-uk-moi",
+      "type": "movie",
+      "name": "Phim US - UK Mới",
+      "endpoint": "/c/phim-us-uk-moi?page={page}"
+    },
+    {
+      "id": "phim-han-quoc-moi",
+      "type": "series",
+      "name": "Phim Hàn Quốc Mới",
+      "endpoint": "/c/phim-han-quoc-moi?page={page}"
+    },
+    {
       "id": "the-loai-hanh-dong",
       "type": "movie",
       "name": "Hành Động - Kịch Tính",
       "endpoint": "/the-loai/hanh-dong?page={page}"
+    },
+    {
+      "id": "the-loai-vo-thuat",
+      "type": "movie",
+      "name": "Võ Thuật - Kiếm Hiệp",
+      "endpoint": "/the-loai/vo-thuat?page={page}"
     },
     {
       "id": "the-loai-khoa-hoc-vien-tuong",
@@ -83,10 +125,10 @@
       "endpoint": "/the-loai/khoa-hoc-vien-tuong?page={page}"
     },
     {
-      "id": "the-loai-kinh-di",
-      "type": "movie",
-      "name": "Siêu Cấp Kinh Dị",
-      "endpoint": "/c/sieu-cap-kinh-di?page={page}"
+      "id": "the-loai-hoat-hinh",
+      "type": "series",
+      "name": "Hoạt Hình - Anime",
+      "endpoint": "/the-loai/hoat-hinh?page={page}"
     },
     {
       "id": "the-loai-tinh-cam",
@@ -101,16 +143,10 @@
       "endpoint": "/the-loai/tam-ly?page={page}"
     },
     {
-      "id": "the-loai-hai-huoc",
-      "type": "movie",
-      "name": "Hài Cười Bể Bụng",
-      "endpoint": "/c/cuoi-be-bung?page={page}"
-    },
-    {
-      "id": "the-loai-hoat-hinh",
+      "id": "the-loai-chinh-kich",
       "type": "series",
-      "name": "Hoạt Hình - Anime",
-      "endpoint": "/the-loai/hoat-hinh?page={page}"
+      "name": "Chính Kịch",
+      "endpoint": "/the-loai/chinh-kich?page={page}"
     },
     {
       "id": "the-loai-phieu-luu",
@@ -119,34 +155,46 @@
       "endpoint": "/the-loai/phieu-luu?page={page}"
     },
     {
-      "id": "the-loai-co-trang",
-      "type": "series",
-      "name": "Cổ Trang Trung Quốc",
-      "endpoint": "/c/co-trang-trung-quoc?page={page}"
-    },
-    {
-      "id": "quoc-gia-au-my",
+      "id": "the-loai-hinh-su",
       "type": "movie",
-      "name": "Phim US - UK Mới",
-      "endpoint": "/c/phim-us-uk-moi?page={page}"
+      "name": "Hình Sự - Tội Phạm",
+      "endpoint": "/the-loai/hinh-su?page={page}"
     },
     {
-      "id": "quoc-gia-han-quoc",
-      "type": "series",
-      "name": "Phim Hàn Quốc Mới",
-      "endpoint": "/c/phim-han-quoc-moi?page={page}"
+      "id": "the-loai-chien-tranh",
+      "type": "movie",
+      "name": "Chiến Tranh",
+      "endpoint": "/the-loai/chien-tranh?page={page}"
     },
     {
-      "id": "quoc-gia-trung-quoc",
+      "id": "the-loai-gia-dinh",
+      "type": "movie",
+      "name": "Gia Đình",
+      "endpoint": "/the-loai/gia-dinh?page={page}"
+    },
+    {
+      "id": "the-loai-hoc-duong",
       "type": "series",
-      "name": "Phim Trung Quốc Mới",
-      "endpoint": "/c/phim-trung-quoc-moi?page={page}"
+      "name": "Học Đường",
+      "endpoint": "/the-loai/hoc-duong?page={page}"
     },
     {
       "id": "quoc-gia-thai-lan",
       "type": "series",
       "name": "Phim Thái Lan",
       "endpoint": "/quoc-gia/thai-lan?page={page}"
+    },
+    {
+      "id": "quoc-gia-nhat-ban",
+      "type": "series",
+      "name": "Phim Nhật Bản",
+      "endpoint": "/quoc-gia/nhat-ban?page={page}"
+    },
+    {
+      "id": "quoc-gia-dai-loan",
+      "type": "series",
+      "name": "Phim Đài Loan",
+      "endpoint": "/quoc-gia/dai-loan?page={page}"
     }
   ],
   "scrape": {
@@ -166,9 +214,9 @@
         "poster": "meta[property=\"og:image\"] @content, img[src*=\"cdn.500phim.net\"] @src, img @src",
         "description": "meta[name=\"description\"] @content",
         "videos": {
-          "item": "a[href*=\"/xem-phim/\"]",
+          "item": "a.item[href*=\"/xem-phim/\"], a.edition-pill-item[href*=\"/xem-phim/\"]",
           "map": {
-            "title": "span.ep-title @text, @text",
+            "title": "div.ep-sort @text, span.ep-title @text, span.ep-badge @text, @text",
             "id": "@href"
           }
         }
@@ -177,8 +225,8 @@
     "streams": {
       "endpoint": "/{slug}",
       "candidates": {
-        "selector": "iframe[src*=\"/embed/\"], iframe, a[href*=\"/xem-phim/\"], video, source",
-        "attr": "src, href, data-src"
+        "selector": "iframe#embed-player, iframe[src*=\"embed\"], iframe",
+        "attr": "src"
       }
     }
   },
@@ -198,6 +246,8 @@
       ".m3u8",
       ".mp4",
       "chophim.app",
+      "phim1280.tv",
+      "darkbytes.xyz",
       "kvp",
       "kkphim",
       "v8.streamvsmov",
