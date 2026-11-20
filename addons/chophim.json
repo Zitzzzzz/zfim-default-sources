@@ -1,0 +1,355 @@
+{
+  "$schema": "zfim/addon-json/v1",
+  "kind": "single",
+  "id": "chophim",
+  "name": "Chợ Phim Song Ngữ",
+  "version": "1.0.0",
+  "base": "https://chophim.wtf",
+  "dynamicDomainUrl": "https://u.gy/chophim",
+  "logo": "https://chophim.wtf/favicon.ico",
+  "description": "Kho phim Song Ngữ (Việt-Anh-Trung-Hàn), Thuyết Minh, Lồng Tiếng & Vietsub chất lượng cao, hỗ trợ phụ đề rời đa ngôn ngữ và xem trước khung hình khi tua",
+  "headers": {
+    "Referer": "https://chophim.wtf/",
+    "Origin": "https://chophim.wtf",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+  },
+  "resources": [
+    "catalog",
+    "meta",
+    "stream"
+  ],
+  "types": [
+    "movie",
+    "series"
+  ],
+  "catalogs": [
+    {
+      "type": "series",
+      "id": "phim-song-ngu",
+      "name": "Phim Song Ngữ",
+      "endpoint": "/phim-song-ngu?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "phim-moi-cap-nhat",
+      "name": "Mới Cập Nhật",
+      "endpoint": "/api/film/danh-sach/phim-moi-cap-nhat?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "phim-bo",
+      "name": "Phim Bộ",
+      "endpoint": "/api/film/danh-sach/phim-bo?page={page}"
+    },
+    {
+      "type": "movie",
+      "id": "phim-le",
+      "name": "Phim Lẻ",
+      "endpoint": "/api/film/danh-sach/phim-le?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "hoat-hinh",
+      "name": "Hoạt Hình / Anime",
+      "endpoint": "/api/film/danh-sach/hoat-hinh?page={page}"
+    },
+    {
+      "type": "movie",
+      "id": "phim-chieu-rap",
+      "name": "Phim Chiếu Rạp",
+      "endpoint": "/api/film/danh-sach/phim-chieu-rap?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-k-drama",
+      "name": "K-Drama Hàn Quốc",
+      "endpoint": "/chu-de/k-drama-han-quoc?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-co-trang",
+      "name": "Cổ Trang Trung Quốc",
+      "endpoint": "/chu-de/co-trang-trung-quoc?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-anime-moi",
+      "name": "Anime Mới",
+      "endpoint": "/chu-de/anime-moi?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-long-tieng",
+      "name": "Lồng Tiếng Cực Mạnh",
+      "endpoint": "/chu-de/long-tieng-cuc-manh?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-chua-lanh",
+      "name": "Phim Hàn Chữa Lành",
+      "endpoint": "/chu-de/phim-han-chua-lanh?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-thanh-xuan",
+      "name": "Thanh Xuân Vườn Trường",
+      "endpoint": "/chu-de/thanh-xuan-vuon-truong?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-vo-thuat",
+      "name": "Võ Thuật Kinh Điển",
+      "endpoint": "/chu-de/vo-thuat-kinh-dien?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "chu-de-pha-an",
+      "name": "Phá Án Hình Sự",
+      "endpoint": "/chu-de/pha-an-hinh-su?page={page}"
+    },
+    {
+      "type": "movie",
+      "id": "chu-de-kinh-di",
+      "name": "Kinh Dị Rùng Rợn",
+      "endpoint": "/chu-de/kinh-di-rung-ron?page={page}"
+    },
+    {
+      "type": "movie",
+      "id": "chu-de-marvel",
+      "name": "Marvel Studios",
+      "endpoint": "/chu-de/marvel-studios?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-hanh-dong",
+      "name": "Hành Động",
+      "endpoint": "/api/film/the-loai/hanh-dong?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-tinh-cam",
+      "name": "Tình Cảm",
+      "endpoint": "/api/film/the-loai/tinh-cam?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-co-trang",
+      "name": "Cổ Trang",
+      "endpoint": "/api/film/the-loai/co-trang?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-hai-huoc",
+      "name": "Hài Hước",
+      "endpoint": "/api/film/the-loai/hai-huoc?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-tam-ly",
+      "name": "Tâm Lý",
+      "endpoint": "/api/film/the-loai/tam-ly?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-hinh-su",
+      "name": "Hình Sự",
+      "endpoint": "/api/film/the-loai/hinh-su?page={page}"
+    },
+    {
+      "type": "movie",
+      "id": "the-loai-kinh-di",
+      "name": "Kinh Dị",
+      "endpoint": "/api/film/the-loai/kinh-di?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-vien-tuong",
+      "name": "Viễn Tưởng",
+      "endpoint": "/api/film/the-loai/vien-tuong?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-vo-thuat",
+      "name": "Võ Thuật",
+      "endpoint": "/api/film/the-loai/vo-thuat?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-phieu-luu",
+      "name": "Phiêu Lưu",
+      "endpoint": "/api/film/the-loai/phieu-luu?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-chinh-kich",
+      "name": "Chính Kịch",
+      "endpoint": "/api/film/the-loai/chinh-kich?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-lang-man",
+      "name": "Lãng Mạn",
+      "endpoint": "/api/film/the-loai/lang-man?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-hoc-duong",
+      "name": "Học Đường",
+      "endpoint": "/api/film/the-loai/hoc-duong?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-bi-an",
+      "name": "Bí Ẩn",
+      "endpoint": "/api/film/the-loai/bi-an?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-gia-dinh",
+      "name": "Gia Đình",
+      "endpoint": "/api/film/the-loai/gia-dinh?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-chien-tranh",
+      "name": "Chiến Tranh",
+      "endpoint": "/api/film/the-loai/chien-tranh?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-tai-lieu",
+      "name": "Tài Liệu",
+      "endpoint": "/api/film/the-loai/tai-lieu?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-the-thao",
+      "name": "Thể Thao",
+      "endpoint": "/api/film/the-loai/the-thao?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-am-nhac",
+      "name": "Âm Nhạc",
+      "endpoint": "/api/film/the-loai/am-nhac?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "the-loai-khoa-hoc",
+      "name": "Khoa Học",
+      "endpoint": "/api/film/the-loai/khoa-hoc?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-han-quoc",
+      "name": "Hàn Quốc",
+      "endpoint": "/api/film/quoc-gia/han-quoc?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-trung-quoc",
+      "name": "Trung Quốc",
+      "endpoint": "/api/film/quoc-gia/trung-quoc?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-au-my",
+      "name": "Âu Mỹ",
+      "endpoint": "/api/film/quoc-gia/au-my?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-nhat-ban",
+      "name": "Nhật Bản",
+      "endpoint": "/api/film/quoc-gia/nhat-ban?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-thai-lan",
+      "name": "Thái Lan",
+      "endpoint": "/api/film/quoc-gia/thai-lan?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-dai-loan",
+      "name": "Đài Loan",
+      "endpoint": "/api/film/quoc-gia/dai-loan?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-hong-kong",
+      "name": "Hồng Kông",
+      "endpoint": "/api/film/quoc-gia/hong-kong?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-anh",
+      "name": "Anh",
+      "endpoint": "/api/film/quoc-gia/anh?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-phap",
+      "name": "Pháp",
+      "endpoint": "/api/film/quoc-gia/phap?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-viet-nam",
+      "name": "Việt Nam",
+      "endpoint": "/api/film/quoc-gia/viet-nam?page={page}"
+    },
+    {
+      "type": "series",
+      "id": "quoc-gia-an-do",
+      "name": "Ấn Độ",
+      "endpoint": "/api/film/quoc-gia/an-do?page={page}"
+    }
+  ],
+  "scrape": {
+    "list": {
+      "endpoint": "/api/film/danh-sach/phim-moi-cap-nhat?page={page}",
+      "item": ".movie-card-wrapper",
+      "map": {
+        "id": "a.movie-card @href, a @href",
+        "name": "img @alt, .movie-title @text, h3 @text",
+        "poster": "img @src, img @data-src"
+      }
+    },
+    "search": {
+      "endpoint": "/api/film/tim-kiem?keyword={query}&page={page}",
+      "item": ".movie-card-wrapper",
+      "map": {
+        "id": "a.movie-card @href, a @href",
+        "name": "img @alt, .movie-title @text, h3 @text",
+        "poster": "img @src, img @data-src"
+      }
+    },
+    "meta": {
+      "endpoint": "/phim/{slug}",
+      "map": {
+        "name": "h1 @text",
+        "poster": "img @src"
+      }
+    },
+    "streams": {
+      "endpoint": "/xem/{slug}",
+      "candidates": {
+        "selector": "iframe[src], video source[src]",
+        "attr": "src,data-src",
+        "label": "@title"
+      }
+    }
+  },
+  "streamFilters": {
+    "blocklistHosts": [],
+    "bannedTerms": [],
+    "allowedIndicators": [
+      ".m3u8",
+      ".mp4",
+      "/public/m3u8/",
+      "phim1280",
+      "chophim-cdn"
+    ]
+  }
+}
